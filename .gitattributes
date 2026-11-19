@@ -1,0 +1,18 @@
+# Build output: do not edit by hand. Edit the sources and rebuild, as
+# described under "Where things are" in README.md.
+# linguist-generated tells GitHub to treat these files as generated, for
+# example to fold them in diffs. It does not change the content of any file.
+evals/*/eval.json linguist-generated=true
+evals/manifest.json linguist-generated=true
+results/** linguist-generated=true
+docs/** linguist-generated=true
+pilot/eval.json linguist-generated=true
+pilot/chromosome_lengths.json linguist-generated=true
+pilot/VERIFICATION.md linguist-generated=true
+pilot/workspace/** linguist-generated=true
+pilot/results/** linguist-generated=true
+pilot/private/answer_key.json linguist-generated=true
+pilot/private/provenance.json linguist-generated=true
+pilot/private/grader_config.latch.json linguist-generated=true
+pilot/private/results/** linguist-generated=true
+pilot/private/siblings/** linguist-generated=true

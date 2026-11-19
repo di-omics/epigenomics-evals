@@ -4,9 +4,11 @@
     .venv/bin/python pilot/build_pilot.py
 
 Needs the fetched data (scripts/fetch_data.py) and the project environment.
-Writes the agent workspace, the private answer keys, the provenance record and
-the verification report. Everything it writes is checked into the repository,
-so the replay itself (pilot/replay.py) needs neither this script nor the data.
+Writes the agent workspace, the private answer keys and the provenance record.
+Everything it writes is checked into the repository, so the replay itself
+(pilot/replay.py) needs neither this script nor the data. The pages built from
+these records (VERIFICATION.md and the results block of README.md) are written
+by `python3 pilot/replay.py --write`.
 """
 from __future__ import annotations
 

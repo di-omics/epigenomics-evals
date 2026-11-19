@@ -1,6 +1,6 @@
 """Task specifications: prompt, answer fields, tolerances, notes.
 
-The numbers in a published eval.json are never typed by hand. build_evals.py
+The numbers in a published eval.json are never typed by hand. build.py
 computes the reference answer from the data, rounds it, and writes it next to
 the tolerances declared here.
 """

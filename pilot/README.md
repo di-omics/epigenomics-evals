@@ -53,10 +53,14 @@ python3 pilot/grader.py --answer my_answer.json --key pilot/private/answer_key.j
 | `grader.py` | the deterministic grader | no |
 | `replays.py` | the scripted correct and wrong analyses | no |
 | `replay.py` | the one command above | no |
+| `docs.py` | builds `VERIFICATION.md` and the results block of this page from the recorded results | no |
+| `chromosome_lengths.json` | hg19 and hg38 chromosome lengths, for the replay's genome-build check | no |
 | `results/` | the replay record with every answer taken out | no |
 | `VERIFICATION.md` | what was checked about the inputs, and how | no |
 | `private/` | the answer key, the labels, both solutions, the 10 check pairs, the full replay record, agent runs | no |
-| `build_pilot.py` | rebuilds all of the above from the public data | no |
+| `private/labels.json` | which label each peak caller got in each instance; frozen, so a rebuild cannot reshuffle them | no |
+| `record_agent_run.py` | grades one agent run and files its record under `private/agent_runs/` | no |
+| `build_pilot.py` | rebuilds the workspace, `eval.json`, the keys, the provenance record and the check pairs from the public data | no |
 
 To hand the task to an agent, copy `workspace/` and nothing else.
 

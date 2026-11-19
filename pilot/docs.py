@@ -101,7 +101,7 @@ def verification(prov: dict, s: dict) -> str:
          "public demonstration, not a held-out item."),
     ]
     out = ["# What was verified about the inputs", "",
-           f"Status: {prov['status']}. Written by `python3 pilot/replay.py --write`.",
+           f"Status: {prov['status']}. Written by `python3 pilot/replay.py --write`. Do not edit by hand.",
            "Every check on this page was written and run by AI models. No person has checked it yet.", "",
            "| Item | What the pilot relies on | How it was checked | Result |", "|---|---|---|---|"]
     out += [f"| {a} | {b} | {c} | {d} |" for a, b, c, d in rows]

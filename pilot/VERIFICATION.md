@@ -1,6 +1,6 @@
 # What was verified about the inputs
 
-Status: independent prototype. Written by `python3 pilot/replay.py --write`.
+Status: independent prototype. Written by `python3 pilot/replay.py --write`. Do not edit by hand.
 Every check on this page was written and run by AI models. No person has checked it yet.
 
 | Item | What the pilot relies on | How it was checked | Result |

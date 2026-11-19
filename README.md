@@ -124,6 +124,42 @@ pilot's `eval.json` follows that shorter form.
 - `data_node` is null, because the files are not on Latch. `data_files` lists
   each input with its public source and SHA-256 instead.
 
+## Where things are
+
+| To do this | Go to |
+|---|---|
+| Read a task: prompt, answer key, window and notes | [docs/TASKS.md](docs/TASKS.md) |
+| Change a prompt, an answer field or a tolerance | `src/epigenomics_evals/specs.py` |
+| Change a reference, variant or trap analysis | `src/epigenomics_evals/tasks.py` |
+| See the evidence behind a decision key | `src/epigenomics_evals/checks.py` |
+| See how an answer is graded | `src/epigenomics_evals/grading.py` |
+| Rebuild the tasks, the tables and the figure | `src/epigenomics_evals/build.py` |
+| Try a task, or hand one to an agent | `scripts/stage_task.py` |
+| Run or read the pilot | [pilot/README.md](pilot/README.md) |
+
+**Generated, do not edit.** The files below are build output. To change one,
+edit `specs.py` or `tasks.py` (for the pilot, the scripts in `pilot/`) and
+rebuild.
+
+- `python -m epigenomics_evals.build` writes every `evals/<id>/eval.json`,
+  `evals/manifest.json`, all of `results/` and `docs/`, and one block of this
+  page: the task table, the control counts and the anchors table (between the
+  `BEGIN GENERATED` and `END GENERATED` comments in its source).
+- `python pilot/build_pilot.py` writes `pilot/workspace/`, `pilot/eval.json`
+  and `pilot/chromosome_lengths.json`, and in `pilot/private/` the files
+  `answer_key.json`, `provenance.json` and `grader_config.latch.json` and the
+  folder `siblings/`.
+- `python pilot/replay.py --write` writes `pilot/results/`,
+  `pilot/private/results/`, `pilot/VERIFICATION.md` and the marked block of
+  `pilot/README.md`.
+
+The same paths are marked as generated in `.gitattributes`, so GitHub folds
+them in diffs. Everything else is source or a fixed record. 2 files sit next
+to build output without being build output:
+`evals/ct04_antibody_panel_reference/samplesheet.csv` is an input the build
+reads, and `pilot/private/labels.json` is frozen (the pilot build only adds an
+entry for a new instance).
+
 ## Reproduce
 
 ```bash
@@ -131,8 +167,16 @@ uv venv --python 3.12 .venv
 uv pip install --python .venv/bin/python -e ".[grade,dev]"
 .venv/bin/python scripts/fetch_data.py           # about 280 MB from public sources
 .venv/bin/python -m epigenomics_evals.build      # rebuilds evals/, results/, docs/
+.venv/bin/python pilot/build_pilot.py            # rebuilds the pilot's inputs and keys
+.venv/bin/python pilot/replay.py --write         # replays the pilot, records the results
 .venv/bin/python -m pytest
 ```
+
+CI runs the same fetch, the same 3 rebuild commands and the tests on every
+push to `main` and on every pull request (job `reproduce`). It fails if a
+rebuild changes a tracked file, or if a test fails. One folder is left out of
+that comparison: `pilot/private/siblings/`. The replay still recomputes each
+key in it from its files.
 
 The build computes every answer key, every window and every measured value,
 including the figures quoted in the task notes. The answer options are fixed
