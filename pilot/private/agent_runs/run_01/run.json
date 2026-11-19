@@ -1,0 +1,85 @@
+{
+ "run_id": "run_01",
+ "task_id": "fig4a_peak_set_choice",
+ "instance": "primary",
+ "model": "Claude Sonnet 5.5",
+ "harness": "Claude Code subagent (general-purpose), started from the desktop app; 1 run, no repeats",
+ "started": "2026-11-18 17:47 PST",
+ "finished": "2026-11-18 17:48 PST",
+ "answer": {
+  "n_peaks_a": 11094,
+  "n_peaks_b": 19672,
+  "n_reference_peaks": 51176,
+  "n_a_peaks_overlapping_reference": 10243,
+  "n_b_peaks_overlapping_reference": 16540,
+  "n_reference_peaks_overlapped_by_a": 19190,
+  "n_reference_peaks_overlapped_by_b": 17365,
+  "answer": "A"
+ },
+ "verdict": {
+  "passed": true,
+  "schema_errors": [],
+  "fields": {
+   "n_peaks_a": {
+    "submitted": 11094,
+    "expected": 11094,
+    "ok": true
+   },
+   "n_peaks_b": {
+    "submitted": 19672,
+    "expected": 19672,
+    "ok": true
+   },
+   "n_reference_peaks": {
+    "submitted": 51176,
+    "expected": 51176,
+    "ok": true
+   },
+   "n_a_peaks_overlapping_reference": {
+    "submitted": 10243,
+    "expected": 10243,
+    "ok": true
+   },
+   "n_b_peaks_overlapping_reference": {
+    "submitted": 16540,
+    "expected": 16540,
+    "ok": true
+   },
+   "n_reference_peaks_overlapped_by_a": {
+    "submitted": 19190,
+    "expected": 19190,
+    "ok": true
+   },
+   "n_reference_peaks_overlapped_by_b": {
+    "submitted": 17365,
+    "expected": 17365,
+    "ok": true
+   }
+  },
+  "wrong_fields": [],
+  "choice_correct": true,
+  "choice_follows_from_counts": true
+ },
+ "inputs_unmodified_after_the_run": true,
+ "prompt_unmodified_after_the_run": true,
+ "files_the_agent_created": [
+  "work/a.py"
+ ],
+ "scripts_kept": [
+  "a.py"
+ ],
+ "notes": [
+  "65,398 tokens, 4 tool calls, 33 seconds, as reported by the harness.",
+  "Not a benchmark-grade run: the agent ran on the author's own machine, where the answer key exists on disk. It was told to stay inside its folder, and its tool-call list is the check on that.",
+  "The agent's reply is kept verbatim, except that the absolute path of its folder is written as <workspace>.",
+  "The task was given a shorter id after this run. Its prompt and its inputs are unchanged."
+ ],
+ "tool_calls": {
+  "total": 4,
+  "by_tool": {
+   "Bash": 3,
+   "SubagentHandback": 1
+  },
+  "naming_a_path_outside_the_workspace": []
+ }
+}

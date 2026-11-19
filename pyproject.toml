@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "epigenomics-evals"
+version = "0.1.0"
+description = "Epigenomics agent eval tasks built from one published CUT&Tag paper, in LatchBio's public eval format, each shipped with scripted controls."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["numpy>=1.24", "pandas>=2.0"]
+
+[project.optional-dependencies]
+grade = ["latch-eval-tools==0.4.54"]
+dev = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/epigenomics_evals"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

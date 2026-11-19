@@ -1,0 +1,46 @@
+{
+ "primary": {
+  "A": "SEACR",
+  "B": "MACS2"
+ },
+ "pair_01": {
+  "A": "SEACR",
+  "B": "MACS2"
+ },
+ "pair_02": {
+  "A": "MACS2",
+  "B": "SEACR"
+ },
+ "pair_03": {
+  "A": "MACS2",
+  "B": "SEACR"
+ },
+ "pair_04": {
+  "A": "MACS2",
+  "B": "SEACR"
+ },
+ "pair_05": {
+  "A": "MACS2",
+  "B": "SEACR"
+ },
+ "pair_06": {
+  "A": "SEACR",
+  "B": "MACS2"
+ },
+ "pair_07": {
+  "A": "MACS2",
+  "B": "SEACR"
+ },
+ "pair_08": {
+  "A": "SEACR",
+  "B": "MACS2"
+ },
+ "pair_09": {
+  "A": "SEACR",
+  "B": "MACS2"
+ },
+ "pair_10": {
+  "A": "MACS2",
+  "B": "SEACR"
+ }
+}

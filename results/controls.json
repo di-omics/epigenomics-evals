@@ -1,0 +1,3162 @@
+{
+ "latch_eval_tools": "0.4.54",
+ "controls": [
+  {
+   "task": "ct01_encode_capture",
+   "name": "reference",
+   "kind": "reference",
+   "description": "Drop peaks in blacklisted regions and on non-standard chromosomes, then count peak overlaps in each direction.",
+   "expect_pass": true,
+   "answer": {
+    "n_library_peaks": 19672,
+    "frac_library_in_encode": 0.8407889385929239,
+    "frac_encode_captured": 0.3393192121306863
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "n_library_peaks": {
+      "value": 19672,
+      "window": [
+       19372,
+       19972
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_library_in_encode": {
+      "value": 0.8407889385929239,
+      "window": [
+       0.8208,
+       0.8608
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_encode_captured": {
+      "value": 0.3393192121306863,
+      "window": [
+       0.3293,
+       0.3493
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct01_encode_capture",
+   "name": "blacklist_only",
+   "kind": "variant",
+   "description": "Drop blacklisted peaks but keep unplaced and mitochondrial contigs.",
+   "expect_pass": true,
+   "answer": {
+    "n_library_peaks": 19939,
+    "frac_library_in_encode": 0.8295300667034455,
+    "frac_encode_captured": 0.3393192121306863
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "n_library_peaks": {
+      "value": 19939,
+      "window": [
+       19372,
+       19972
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_library_in_encode": {
+      "value": 0.8295300667034455,
+      "window": [
+       0.8208,
+       0.8608
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_encode_captured": {
+      "value": 0.3393192121306863,
+      "window": [
+       0.3293,
+       0.3493
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct01_encode_capture",
+   "name": "book_ended_counts",
+   "kind": "variant",
+   "description": "Treat coordinates as 1-based closed, so touching intervals count as overlapping.",
+   "expect_pass": true,
+   "answer": {
+    "n_library_peaks": 19672,
+    "frac_library_in_encode": 0.8408397722651484,
+    "frac_encode_captured": 0.33945599499765516
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "n_library_peaks": {
+      "value": 19672,
+      "window": [
+       19372,
+       19972
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_library_in_encode": {
+      "value": 0.8408397722651484,
+      "window": [
+       0.8208,
+       0.8608
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_encode_captured": {
+      "value": 0.33945599499765516,
+      "window": [
+       0.3293,
+       0.3493
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct01_encode_capture",
+   "name": "encode_filtered_too",
+   "kind": "variant",
+   "description": "Apply the same filter to the ENCODE set before computing recovery.",
+   "expect_pass": true,
+   "answer": {
+    "n_library_peaks": 19672,
+    "frac_library_in_encode": 0.8406364375762505,
+    "frac_encode_captured": 0.34252007338870366
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "n_library_peaks": {
+      "value": 19672,
+      "window": [
+       19372,
+       19972
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_library_in_encode": {
+      "value": 0.8406364375762505,
+      "window": [
+       0.8208,
+       0.8608
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_encode_captured": {
+      "value": 0.34252007338870366,
+      "window": [
+       0.3293,
+       0.3493
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct01_encode_capture",
+   "name": "no_artifact_filter",
+   "kind": "trap",
+   "description": "Compare the peak file as delivered, blacklisted regions included.",
+   "expect_pass": false,
+   "answer": {
+    "n_library_peaks": 21487,
+    "frac_library_in_encode": 0.7788430213617537,
+    "frac_encode_captured": 0.3438330467406597
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "n_library_peaks": {
+      "value": 21487,
+      "window": [
+       19372,
+       19972
+      ],
+      "ok": false,
+      "gap": 1515
+     },
+     "frac_library_in_encode": {
+      "value": 0.7788430213617537,
+      "window": [
+       0.8208,
+       0.8608
+      ],
+      "ok": false,
+      "gap": 0.04195697863824632
+     },
+     "frac_encode_captured": {
+      "value": 0.3438330467406597,
+      "window": [
+       0.3293,
+       0.3493
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.3333333333333333
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct01_encode_capture",
+   "name": "swapped_denominators",
+   "kind": "trap",
+   "description": "Report the two fractions against the wrong denominators.",
+   "expect_pass": false,
+   "answer": {
+    "n_library_peaks": 19672,
+    "frac_library_in_encode": 0.3393192121306863,
+    "frac_encode_captured": 0.8407889385929239
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "n_library_peaks": {
+      "value": 19672,
+      "window": [
+       19372,
+       19972
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_library_in_encode": {
+      "value": 0.3393192121306863,
+      "window": [
+       0.8208,
+       0.8608
+      ],
+      "ok": false,
+      "gap": 0.4814807878693137
+     },
+     "frac_encode_captured": {
+      "value": 0.8407889385929239,
+      "window": [
+       0.3293,
+       0.3493
+      ],
+      "ok": false,
+      "gap": 0.4914889385929239
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.3333333333333333
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct01_encode_capture",
+   "name": "basepair_overlap",
+   "kind": "trap",
+   "description": "Report base-pair overlap instead of the share of peaks.",
+   "expect_pass": false,
+   "answer": {
+    "n_library_peaks": 19672,
+    "frac_library_in_encode": 0.8180830132821173,
+    "frac_encode_captured": 0.29981591901329846
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "n_library_peaks": {
+      "value": 19672,
+      "window": [
+       19372,
+       19972
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_library_in_encode": {
+      "value": 0.8180830132821173,
+      "window": [
+       0.8208,
+       0.8608
+      ],
+      "ok": false,
+      "gap": 0.0027169867178826745
+     },
+     "frac_encode_captured": {
+      "value": 0.29981591901329846,
+      "window": [
+       0.3293,
+       0.3493
+      ],
+      "ok": false,
+      "gap": 0.029484080986701522
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.3333333333333333
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct02_strong_vs_weak_recovery",
+   "name": "reference",
+   "kind": "reference",
+   "description": "Rank ENCODE peaks by ENCODE q-value and compute recovery in the top and bottom tenth.",
+   "expect_pass": true,
+   "answer": {
+    "recall_strongest_decile": 0.8938831346492085,
+    "recall_weakest_decile": 0.05921438342778972,
+    "median_neglog10q_recovered": 46.87642,
+    "median_neglog10q_missed": 8.46976,
+    "interpretation": 4
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "recall_strongest_decile": {
+      "value": 0.8938831346492085,
+      "window": [
+       0.8639,
+       0.9239
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recall_weakest_decile": {
+      "value": 0.05921438342778972,
+      "window": [
+       0.019200000000000002,
+       0.09920000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_recovered": {
+      "value": 46.87642,
+      "window": [
+       41.88,
+       51.88
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_missed": {
+      "value": 8.46976,
+      "window": [
+       6.970000000000001,
+       9.97
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 4,
+      "window": [
+       4,
+       4
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct02_strong_vs_weak_recovery",
+   "name": "rank_by_signal_value",
+   "kind": "variant",
+   "description": "Rank ENCODE peaks by signalValue (column 7) instead of q-value.",
+   "expect_pass": true,
+   "answer": {
+    "recall_strongest_decile": 0.8762947039280828,
+    "recall_weakest_decile": 0.08422904045339066,
+    "median_neglog10q_recovered": 46.87642,
+    "median_neglog10q_missed": 8.46976,
+    "interpretation": 4
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "recall_strongest_decile": {
+      "value": 0.8762947039280828,
+      "window": [
+       0.8639,
+       0.9239
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recall_weakest_decile": {
+      "value": 0.08422904045339066,
+      "window": [
+       0.019200000000000002,
+       0.09920000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_recovered": {
+      "value": 46.87642,
+      "window": [
+       41.88,
+       51.88
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_missed": {
+      "value": 8.46976,
+      "window": [
+       6.970000000000001,
+       9.97
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 4,
+      "window": [
+       4,
+       4
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct02_strong_vs_weak_recovery",
+   "name": "rank_by_p_value",
+   "kind": "variant",
+   "description": "Rank ENCODE peaks by p-value (column 8).",
+   "expect_pass": true,
+   "answer": {
+    "recall_strongest_decile": 0.8938831346492085,
+    "recall_weakest_decile": 0.05921438342778972,
+    "median_neglog10q_recovered": 46.87642,
+    "median_neglog10q_missed": 8.46976,
+    "interpretation": 4
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "recall_strongest_decile": {
+      "value": 0.8938831346492085,
+      "window": [
+       0.8639,
+       0.9239
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recall_weakest_decile": {
+      "value": 0.05921438342778972,
+      "window": [
+       0.019200000000000002,
+       0.09920000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_recovered": {
+      "value": 46.87642,
+      "window": [
+       41.88,
+       51.88
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_missed": {
+      "value": 8.46976,
+      "window": [
+       6.970000000000001,
+       9.97
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 4,
+      "window": [
+       4,
+       4
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct02_strong_vs_weak_recovery",
+   "name": "unfiltered_peaks",
+   "kind": "variant",
+   "description": "Use the CUT&Tag peaks as delivered.",
+   "expect_pass": true,
+   "answer": {
+    "recall_strongest_decile": 0.9040453390658589,
+    "recall_weakest_decile": 0.060191518467852256,
+    "median_neglog10q_recovered": 46.54673,
+    "median_neglog10q_missed": 8.41954,
+    "interpretation": 4
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "recall_strongest_decile": {
+      "value": 0.9040453390658589,
+      "window": [
+       0.8639,
+       0.9239
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recall_weakest_decile": {
+      "value": 0.060191518467852256,
+      "window": [
+       0.019200000000000002,
+       0.09920000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_recovered": {
+      "value": 46.54673,
+      "window": [
+       41.88,
+       51.88
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_missed": {
+      "value": 8.41954,
+      "window": [
+       6.970000000000001,
+       9.97
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 4,
+      "window": [
+       4,
+       4
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct02_strong_vs_weak_recovery",
+   "name": "decile_rounded_up",
+   "kind": "variant",
+   "description": "Take ceil(n/10) peaks per decile.",
+   "expect_pass": true,
+   "answer": {
+    "recall_strongest_decile": 0.8939038686987104,
+    "recall_weakest_decile": 0.05920281359906213,
+    "median_neglog10q_recovered": 46.87642,
+    "median_neglog10q_missed": 8.46976,
+    "interpretation": 4
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "recall_strongest_decile": {
+      "value": 0.8939038686987104,
+      "window": [
+       0.8639,
+       0.9239
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recall_weakest_decile": {
+      "value": 0.05920281359906213,
+      "window": [
+       0.019200000000000002,
+       0.09920000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_recovered": {
+      "value": 46.87642,
+      "window": [
+       41.88,
+       51.88
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_missed": {
+      "value": 8.46976,
+      "window": [
+       6.970000000000001,
+       9.97
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 4,
+      "window": [
+       4,
+       4
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct02_strong_vs_weak_recovery",
+   "name": "uniform_recovery_assumed",
+   "kind": "trap",
+   "description": "Report the overall recovery for both strata, with no stratification.",
+   "expect_pass": false,
+   "answer": {
+    "recall_strongest_decile": 0.3393192121306863,
+    "recall_weakest_decile": 0.3393192121306863,
+    "median_neglog10q_recovered": 12.96816,
+    "median_neglog10q_missed": 12.96816,
+    "interpretation": 4
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "recall_strongest_decile": {
+      "value": 0.3393192121306863,
+      "window": [
+       0.8639,
+       0.9239
+      ],
+      "ok": false,
+      "gap": 0.5245807878693137
+     },
+     "recall_weakest_decile": {
+      "value": 0.3393192121306863,
+      "window": [
+       0.019200000000000002,
+       0.09920000000000001
+      ],
+      "ok": false,
+      "gap": 0.24011921213068627
+     },
+     "median_neglog10q_recovered": {
+      "value": 12.96816,
+      "window": [
+       41.88,
+       51.88
+      ],
+      "ok": false,
+      "gap": 28.911840000000005
+     },
+     "median_neglog10q_missed": {
+      "value": 12.96816,
+      "window": [
+       6.970000000000001,
+       9.97
+      ],
+      "ok": false,
+      "gap": 2.9981599999999986
+     },
+     "interpretation": {
+      "value": 4,
+      "window": [
+       4,
+       4
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct02_strong_vs_weak_recovery",
+   "name": "stratified_wrong_peak_set",
+   "kind": "trap",
+   "description": "Stratify the CUT&Tag peaks by their own q-value and report their overlap with ENCODE.",
+   "expect_pass": false,
+   "answer": {
+    "recall_strongest_decile": 0.8784951703101169,
+    "recall_weakest_decile": 0.7193695983731571,
+    "median_neglog10q_recovered": 13.47923,
+    "median_neglog10q_missed": 11.85553,
+    "interpretation": 4
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "recall_strongest_decile": {
+      "value": 0.8784951703101169,
+      "window": [
+       0.8639,
+       0.9239
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recall_weakest_decile": {
+      "value": 0.7193695983731571,
+      "window": [
+       0.019200000000000002,
+       0.09920000000000001
+      ],
+      "ok": false,
+      "gap": 0.620169598373157
+     },
+     "median_neglog10q_recovered": {
+      "value": 13.47923,
+      "window": [
+       41.88,
+       51.88
+      ],
+      "ok": false,
+      "gap": 28.40077
+     },
+     "median_neglog10q_missed": {
+      "value": 11.85553,
+      "window": [
+       6.970000000000001,
+       9.97
+      ],
+      "ok": false,
+      "gap": 1.8855299999999993
+     },
+     "interpretation": {
+      "value": 4,
+      "window": [
+       4,
+       4
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct02_strong_vs_weak_recovery",
+   "name": "absence_read_as_absent",
+   "kind": "trap",
+   "description": "Correct numbers, but concludes the mark is absent where no peak was called.",
+   "expect_pass": false,
+   "answer": {
+    "recall_strongest_decile": 0.8938831346492085,
+    "recall_weakest_decile": 0.05921438342778972,
+    "median_neglog10q_recovered": 46.87642,
+    "median_neglog10q_missed": 8.46976,
+    "interpretation": 1
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "recall_strongest_decile": {
+      "value": 0.8938831346492085,
+      "window": [
+       0.8639,
+       0.9239
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recall_weakest_decile": {
+      "value": 0.05921438342778972,
+      "window": [
+       0.019200000000000002,
+       0.09920000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_recovered": {
+      "value": 46.87642,
+      "window": [
+       41.88,
+       51.88
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_neglog10q_missed": {
+      "value": 8.46976,
+      "window": [
+       6.970000000000001,
+       9.97
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 1,
+      "window": [
+       4,
+       4
+      ],
+      "ok": false,
+      "gap": 3
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct03_duplicates_decision",
+   "name": "reference",
+   "kind": "reference",
+   "description": "Filter each peak set, compute the share of peaks in ENCODE, isolate MACS2 peaks that exist only when duplicates are kept.",
+   "expect_pass": true,
+   "answer": {
+    "duplication_rate": 0.963575,
+    "frac_in_encode_macs2_dedup": 0.8407889385929239,
+    "frac_in_encode_macs2_withdup": 0.1934865671641791,
+    "frac_in_encode_seacr_dedup": 0.9232918694789977,
+    "frac_in_encode_seacr_withdup": 0.925818373812038,
+    "n_macs2_duplicate_only_peaks": 150850,
+    "frac_duplicate_only_in_encode": 0.11862114683460391,
+    "recommendation": 6
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "duplication_rate": {
+      "value": 0.963575,
+      "window": [
+       0.9536,
+       0.9736
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_dedup": {
+      "value": 0.8407889385929239,
+      "window": [
+       0.7608,
+       0.9208
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_withdup": {
+      "value": 0.1934865671641791,
+      "window": [
+       0.14350000000000002,
+       0.2435
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_dedup": {
+      "value": 0.9232918694789977,
+      "window": [
+       0.8433,
+       1.0033
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_withdup": {
+      "value": 0.925818373812038,
+      "window": [
+       0.8458,
+       1.0058
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "n_macs2_duplicate_only_peaks": {
+      "value": 150850,
+      "window": [
+       142850,
+       158850
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_duplicate_only_in_encode": {
+      "value": 0.11862114683460391,
+      "window": [
+       0.0886,
+       0.1486
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recommendation": {
+      "value": 6,
+      "window": [
+       6,
+       6
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct03_duplicates_decision",
+   "name": "unfiltered_peaks",
+   "kind": "variant",
+   "description": "Use the four peak files as delivered.",
+   "expect_pass": true,
+   "answer": {
+    "duplication_rate": 0.963575,
+    "frac_in_encode_macs2_dedup": 0.7788430213617537,
+    "frac_in_encode_macs2_withdup": 0.18810156276951737,
+    "frac_in_encode_seacr_dedup": 0.866422079546402,
+    "frac_in_encode_seacr_withdup": 0.891948443254101,
+    "n_macs2_duplicate_only_peaks": 155642,
+    "frac_duplicate_only_in_encode": 0.11575924236388635,
+    "recommendation": 6
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "duplication_rate": {
+      "value": 0.963575,
+      "window": [
+       0.9536,
+       0.9736
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_dedup": {
+      "value": 0.7788430213617537,
+      "window": [
+       0.7608,
+       0.9208
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_withdup": {
+      "value": 0.18810156276951737,
+      "window": [
+       0.14350000000000002,
+       0.2435
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_dedup": {
+      "value": 0.866422079546402,
+      "window": [
+       0.8433,
+       1.0033
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_withdup": {
+      "value": 0.891948443254101,
+      "window": [
+       0.8458,
+       1.0058
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "n_macs2_duplicate_only_peaks": {
+      "value": 155642,
+      "window": [
+       142850,
+       158850
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_duplicate_only_in_encode": {
+      "value": 0.11575924236388635,
+      "window": [
+       0.0886,
+       0.1486
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recommendation": {
+      "value": 6,
+      "window": [
+       6,
+       6
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct03_duplicates_decision",
+   "name": "blacklist_only",
+   "kind": "variant",
+   "description": "Drop blacklisted peaks only.",
+   "expect_pass": true,
+   "answer": {
+    "duplication_rate": 0.963575,
+    "frac_in_encode_macs2_dedup": 0.8295300667034455,
+    "frac_in_encode_macs2_withdup": 0.19261491281246657,
+    "frac_in_encode_seacr_dedup": 0.9142270617636559,
+    "frac_in_encode_seacr_withdup": 0.9188646288209606,
+    "n_macs2_duplicate_only_peaks": 151360,
+    "frac_duplicate_only_in_encode": 0.11822145877378436,
+    "recommendation": 6
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "duplication_rate": {
+      "value": 0.963575,
+      "window": [
+       0.9536,
+       0.9736
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_dedup": {
+      "value": 0.8295300667034455,
+      "window": [
+       0.7608,
+       0.9208
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_withdup": {
+      "value": 0.19261491281246657,
+      "window": [
+       0.14350000000000002,
+       0.2435
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_dedup": {
+      "value": 0.9142270617636559,
+      "window": [
+       0.8433,
+       1.0033
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_withdup": {
+      "value": 0.9188646288209606,
+      "window": [
+       0.8458,
+       1.0058
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "n_macs2_duplicate_only_peaks": {
+      "value": 151360,
+      "window": [
+       142850,
+       158850
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_duplicate_only_in_encode": {
+      "value": 0.11822145877378436,
+      "window": [
+       0.0886,
+       0.1486
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recommendation": {
+      "value": 6,
+      "window": [
+       6,
+       6
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct03_duplicates_decision",
+   "name": "book_ended_counts",
+   "kind": "variant",
+   "description": "1-based closed coordinates.",
+   "expect_pass": true,
+   "answer": {
+    "duplication_rate": 0.963575,
+    "frac_in_encode_macs2_dedup": 0.8408397722651484,
+    "frac_in_encode_macs2_withdup": 0.19356417910447762,
+    "frac_in_encode_seacr_dedup": 0.9232918694789977,
+    "frac_in_encode_seacr_withdup": 0.925818373812038,
+    "n_macs2_duplicate_only_peaks": 150850,
+    "frac_duplicate_only_in_encode": 0.11870732515744117,
+    "recommendation": 6
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "duplication_rate": {
+      "value": 0.963575,
+      "window": [
+       0.9536,
+       0.9736
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_dedup": {
+      "value": 0.8408397722651484,
+      "window": [
+       0.7608,
+       0.9208
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_withdup": {
+      "value": 0.19356417910447762,
+      "window": [
+       0.14350000000000002,
+       0.2435
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_dedup": {
+      "value": 0.9232918694789977,
+      "window": [
+       0.8433,
+       1.0033
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_withdup": {
+      "value": 0.925818373812038,
+      "window": [
+       0.8458,
+       1.0058
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "n_macs2_duplicate_only_peaks": {
+      "value": 150850,
+      "window": [
+       142850,
+       158850
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_duplicate_only_in_encode": {
+      "value": 0.11870732515744117,
+      "window": [
+       0.0886,
+       0.1486
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recommendation": {
+      "value": 6,
+      "window": [
+       6,
+       6
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct03_duplicates_decision",
+   "name": "keep_duplicates_by_default",
+   "kind": "trap",
+   "description": "Correct numbers, but follows the usual CUT&Tag advice to keep duplicates.",
+   "expect_pass": false,
+   "answer": {
+    "duplication_rate": 0.963575,
+    "frac_in_encode_macs2_dedup": 0.8407889385929239,
+    "frac_in_encode_macs2_withdup": 0.1934865671641791,
+    "frac_in_encode_seacr_dedup": 0.9232918694789977,
+    "frac_in_encode_seacr_withdup": 0.925818373812038,
+    "n_macs2_duplicate_only_peaks": 150850,
+    "frac_duplicate_only_in_encode": 0.11862114683460391,
+    "recommendation": 1
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "duplication_rate": {
+      "value": 0.963575,
+      "window": [
+       0.9536,
+       0.9736
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_dedup": {
+      "value": 0.8407889385929239,
+      "window": [
+       0.7608,
+       0.9208
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_withdup": {
+      "value": 0.1934865671641791,
+      "window": [
+       0.14350000000000002,
+       0.2435
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_dedup": {
+      "value": 0.9232918694789977,
+      "window": [
+       0.8433,
+       1.0033
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_withdup": {
+      "value": 0.925818373812038,
+      "window": [
+       0.8458,
+       1.0058
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "n_macs2_duplicate_only_peaks": {
+      "value": 150850,
+      "window": [
+       142850,
+       158850
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_duplicate_only_in_encode": {
+      "value": 0.11862114683460391,
+      "window": [
+       0.0886,
+       0.1486
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recommendation": {
+      "value": 1,
+      "window": [
+       6,
+       6
+      ],
+      "ok": false,
+      "gap": 5
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct03_duplicates_decision",
+   "name": "raise_stringency_instead",
+   "kind": "trap",
+   "description": "Correct numbers, but proposes filtering the extra peaks by significance.",
+   "expect_pass": false,
+   "answer": {
+    "duplication_rate": 0.963575,
+    "frac_in_encode_macs2_dedup": 0.8407889385929239,
+    "frac_in_encode_macs2_withdup": 0.1934865671641791,
+    "frac_in_encode_seacr_dedup": 0.9232918694789977,
+    "frac_in_encode_seacr_withdup": 0.925818373812038,
+    "n_macs2_duplicate_only_peaks": 150850,
+    "frac_duplicate_only_in_encode": 0.11862114683460391,
+    "recommendation": 3
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "duplication_rate": {
+      "value": 0.963575,
+      "window": [
+       0.9536,
+       0.9736
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_dedup": {
+      "value": 0.8407889385929239,
+      "window": [
+       0.7608,
+       0.9208
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_withdup": {
+      "value": 0.1934865671641791,
+      "window": [
+       0.14350000000000002,
+       0.2435
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_dedup": {
+      "value": 0.9232918694789977,
+      "window": [
+       0.8433,
+       1.0033
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_withdup": {
+      "value": 0.925818373812038,
+      "window": [
+       0.8458,
+       1.0058
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "n_macs2_duplicate_only_peaks": {
+      "value": 150850,
+      "window": [
+       142850,
+       158850
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_duplicate_only_in_encode": {
+      "value": 0.11862114683460391,
+      "window": [
+       0.0886,
+       0.1486
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recommendation": {
+      "value": 3,
+      "window": [
+       6,
+       6
+      ],
+      "ok": false,
+      "gap": 3
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct03_duplicates_decision",
+   "name": "judged_on_recovery",
+   "kind": "trap",
+   "description": "Reports the share of ENCODE peaks recovered by each set instead of the share of each set in ENCODE, and keeps duplicates because recovery rises.",
+   "expect_pass": false,
+   "answer": {
+    "duplication_rate": 0.963575,
+    "frac_in_encode_macs2_dedup": 0.3393192121306863,
+    "frac_in_encode_macs2_withdup": 0.6921017664530249,
+    "frac_in_encode_seacr_dedup": 0.374980459590433,
+    "frac_in_encode_seacr_withdup": 0.3776770361106769,
+    "n_macs2_duplicate_only_peaks": 150850,
+    "frac_duplicate_only_in_encode": 0.11862114683460391,
+    "recommendation": 1
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "duplication_rate": {
+      "value": 0.963575,
+      "window": [
+       0.9536,
+       0.9736
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_dedup": {
+      "value": 0.3393192121306863,
+      "window": [
+       0.7608,
+       0.9208
+      ],
+      "ok": false,
+      "gap": 0.42148078786931376
+     },
+     "frac_in_encode_macs2_withdup": {
+      "value": 0.6921017664530249,
+      "window": [
+       0.14350000000000002,
+       0.2435
+      ],
+      "ok": false,
+      "gap": 0.4486017664530249
+     },
+     "frac_in_encode_seacr_dedup": {
+      "value": 0.374980459590433,
+      "window": [
+       0.8433,
+       1.0033
+      ],
+      "ok": false,
+      "gap": 0.468319540409567
+     },
+     "frac_in_encode_seacr_withdup": {
+      "value": 0.3776770361106769,
+      "window": [
+       0.8458,
+       1.0058
+      ],
+      "ok": false,
+      "gap": 0.4681229638893231
+     },
+     "n_macs2_duplicate_only_peaks": {
+      "value": 150850,
+      "window": [
+       142850,
+       158850
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_duplicate_only_in_encode": {
+      "value": 0.11862114683460391,
+      "window": [
+       0.0886,
+       0.1486
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "recommendation": {
+      "value": 1,
+      "window": [
+       6,
+       6
+      ],
+      "ok": false,
+      "gap": 5
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct03_duplicates_decision",
+   "name": "duplicate_only_by_exact_match",
+   "kind": "trap",
+   "description": "Counts a peak as duplicate-only unless its exact coordinates exist in the duplicate-removed set.",
+   "expect_pass": false,
+   "answer": {
+    "duplication_rate": 0.963575,
+    "frac_in_encode_macs2_dedup": 0.8407889385929239,
+    "frac_in_encode_macs2_withdup": 0.1934865671641791,
+    "frac_in_encode_seacr_dedup": 0.9232918694789977,
+    "frac_in_encode_seacr_withdup": 0.925818373812038,
+    "n_macs2_duplicate_only_peaks": 167388,
+    "frac_duplicate_only_in_encode": 0.19334121920328817,
+    "recommendation": 6
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "duplication_rate": {
+      "value": 0.963575,
+      "window": [
+       0.9536,
+       0.9736
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_dedup": {
+      "value": 0.8407889385929239,
+      "window": [
+       0.7608,
+       0.9208
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_macs2_withdup": {
+      "value": 0.1934865671641791,
+      "window": [
+       0.14350000000000002,
+       0.2435
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_dedup": {
+      "value": 0.9232918694789977,
+      "window": [
+       0.8433,
+       1.0033
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_in_encode_seacr_withdup": {
+      "value": 0.925818373812038,
+      "window": [
+       0.8458,
+       1.0058
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "n_macs2_duplicate_only_peaks": {
+      "value": 167388,
+      "window": [
+       142850,
+       158850
+      ],
+      "ok": false,
+      "gap": 8538
+     },
+     "frac_duplicate_only_in_encode": {
+      "value": 0.19334121920328817,
+      "window": [
+       0.0886,
+       0.1486
+      ],
+      "ok": false,
+      "gap": 0.04474121920328816
+     },
+     "recommendation": {
+      "value": 6,
+      "window": [
+       6,
+       6
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct04_antibody_panel_reference",
+   "name": "reference",
+   "kind": "reference",
+   "description": "Score every library against the ENCODE set for the mark its antibody targets.",
+   "expect_pass": true,
+   "answer": {
+    "n_libraries_meeting_bar": 18,
+    "lowest_library_precision": 0.699310174919931,
+    "mean_encode_recovery": 0.14797864218923318
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "n_libraries_meeting_bar": {
+      "value": 18,
+      "window": [
+       16,
+       19
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "lowest_library_precision": {
+      "value": 0.699310174919931,
+      "window": [
+       0.5993,
+       0.7493000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "mean_encode_recovery": {
+      "value": 0.14797864218923318,
+      "window": [
+       0.133,
+       0.16299999999999998
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct04_antibody_panel_reference",
+   "name": "unfiltered_peaks",
+   "kind": "variant",
+   "description": "Use the peak files as delivered.",
+   "expect_pass": true,
+   "answer": {
+    "n_libraries_meeting_bar": 17,
+    "lowest_library_precision": 0.611878453038674,
+    "mean_encode_recovery": 0.1506271225192737
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "n_libraries_meeting_bar": {
+      "value": 17,
+      "window": [
+       16,
+       19
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "lowest_library_precision": {
+      "value": 0.611878453038674,
+      "window": [
+       0.5993,
+       0.7493000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "mean_encode_recovery": {
+      "value": 0.1506271225192737,
+      "window": [
+       0.133,
+       0.16299999999999998
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct04_antibody_panel_reference",
+   "name": "blacklist_only",
+   "kind": "variant",
+   "description": "Drop blacklisted peaks only.",
+   "expect_pass": true,
+   "answer": {
+    "n_libraries_meeting_bar": 18,
+    "lowest_library_precision": 0.6766388557806913,
+    "mean_encode_recovery": 0.14797864218923318
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "n_libraries_meeting_bar": {
+      "value": 18,
+      "window": [
+       16,
+       19
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "lowest_library_precision": {
+      "value": 0.6766388557806913,
+      "window": [
+       0.5993,
+       0.7493000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "mean_encode_recovery": {
+      "value": 0.14797864218923318,
+      "window": [
+       0.133,
+       0.16299999999999998
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct04_antibody_panel_reference",
+   "name": "book_ended_counts",
+   "kind": "variant",
+   "description": "1-based closed coordinates.",
+   "expect_pass": true,
+   "answer": {
+    "n_libraries_meeting_bar": 18,
+    "lowest_library_precision": 0.699310174919931,
+    "mean_encode_recovery": 0.14807332142985014
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "n_libraries_meeting_bar": {
+      "value": 18,
+      "window": [
+       16,
+       19
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "lowest_library_precision": {
+      "value": 0.699310174919931,
+      "window": [
+       0.5993,
+       0.7493000000000001
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "mean_encode_recovery": {
+      "value": 0.14807332142985014,
+      "window": [
+       0.133,
+       0.16299999999999998
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct04_antibody_panel_reference",
+   "name": "one_reference_for_all",
+   "kind": "trap",
+   "description": "Score all 20 libraries against the H3K27ac set, the mark most of the panel targets.",
+   "expect_pass": false,
+   "answer": {
+    "n_libraries_meeting_bar": 14,
+    "lowest_library_precision": 0.0022462487645631794,
+    "mean_encode_recovery": 0.10378400031264653
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "n_libraries_meeting_bar": {
+      "value": 14,
+      "window": [
+       16,
+       19
+      ],
+      "ok": false,
+      "gap": 2
+     },
+     "lowest_library_precision": {
+      "value": 0.0022462487645631794,
+      "window": [
+       0.5993,
+       0.7493000000000001
+      ],
+      "ok": false,
+      "gap": 0.5970537512354369
+     },
+     "mean_encode_recovery": {
+      "value": 0.10378400031264653,
+      "window": [
+       0.133,
+       0.16299999999999998
+      ],
+      "ok": false,
+      "gap": 0.029215999687353472
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct04_antibody_panel_reference",
+   "name": "pooled_reference",
+   "kind": "trap",
+   "description": "Score all libraries against both ENCODE sets pooled into one reference.",
+   "expect_pass": false,
+   "answer": {
+    "n_libraries_meeting_bar": 20,
+    "lowest_library_precision": 0.8663244353182752,
+    "mean_encode_recovery": 0.07224819562641388
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "n_libraries_meeting_bar": {
+      "value": 20,
+      "window": [
+       16,
+       19
+      ],
+      "ok": false,
+      "gap": 1
+     },
+     "lowest_library_precision": {
+      "value": 0.8663244353182752,
+      "window": [
+       0.5993,
+       0.7493000000000001
+      ],
+      "ok": false,
+      "gap": 0.11702443531827511
+     },
+     "mean_encode_recovery": {
+      "value": 0.07224819562641388,
+      "window": [
+       0.133,
+       0.16299999999999998
+      ],
+      "ok": false,
+      "gap": 0.06075180437358613
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct05_promoter_denominator",
+   "name": "reference",
+   "kind": "reference",
+   "description": "Build one window per unique RefSeq transcript start and ask what share of windows carries a peak from each caller.",
+   "expect_pass": true,
+   "answer": {
+    "frac_promoters_with_peak_macs2": 0.3389903602232369,
+    "median_peak_width_macs2": 537.0,
+    "frac_promoters_with_peak_seacr": 0.3180111618467783,
+    "median_peak_width_seacr": 2256.0,
+    "conclusion": 3
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "frac_promoters_with_peak_macs2": {
+      "value": 0.3389903602232369,
+      "window": [
+       0.314,
+       0.36400000000000005
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_macs2": {
+      "value": 537.0,
+      "window": [
+       497,
+       577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_promoters_with_peak_seacr": {
+      "value": 0.3180111618467783,
+      "window": [
+       0.293,
+       0.343
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_seacr": {
+      "value": 2256.0,
+      "window": [
+       2106,
+       2406
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "conclusion": {
+      "value": 3,
+      "window": [
+       3,
+       3
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct05_promoter_denominator",
+   "name": "gene_level",
+   "kind": "variant",
+   "description": "Count a gene as recovered if any of its transcript starts carries a peak.",
+   "expect_pass": true,
+   "answer": {
+    "frac_promoters_with_peak_macs2": 0.3278149247327207,
+    "median_peak_width_macs2": 537.0,
+    "frac_promoters_with_peak_seacr": 0.3066828762470054,
+    "median_peak_width_seacr": 2256.0,
+    "conclusion": 3
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "frac_promoters_with_peak_macs2": {
+      "value": 0.3278149247327207,
+      "window": [
+       0.314,
+       0.36400000000000005
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_macs2": {
+      "value": 537.0,
+      "window": [
+       497,
+       577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_promoters_with_peak_seacr": {
+      "value": 0.3066828762470054,
+      "window": [
+       0.293,
+       0.343
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_seacr": {
+      "value": 2256.0,
+      "window": [
+       2106,
+       2406
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "conclusion": {
+      "value": 3,
+      "window": [
+       3,
+       3
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct05_promoter_denominator",
+   "name": "window_3000bp_half_open",
+   "kind": "variant",
+   "description": "Windows of exactly 3,000 bp.",
+   "expect_pass": true,
+   "answer": {
+    "frac_promoters_with_peak_macs2": 0.3389396245560629,
+    "median_peak_width_macs2": 537.0,
+    "frac_promoters_with_peak_seacr": 0.3180111618467783,
+    "median_peak_width_seacr": 2256.0,
+    "conclusion": 3
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "frac_promoters_with_peak_macs2": {
+      "value": 0.3389396245560629,
+      "window": [
+       0.314,
+       0.36400000000000005
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_macs2": {
+      "value": 537.0,
+      "window": [
+       497,
+       577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_promoters_with_peak_seacr": {
+      "value": 0.3180111618467783,
+      "window": [
+       0.293,
+       0.343
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_seacr": {
+      "value": 2256.0,
+      "window": [
+       2106,
+       2406
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "conclusion": {
+      "value": 3,
+      "window": [
+       3,
+       3
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct05_promoter_denominator",
+   "name": "tss_unique_by_position",
+   "kind": "variant",
+   "description": "Collapse start sites that share a position on opposite strands.",
+   "expect_pass": true,
+   "answer": {
+    "frac_promoters_with_peak_macs2": 0.33899895989243767,
+    "median_peak_width_macs2": 537.0,
+    "frac_promoters_with_peak_seacr": 0.3179938608285345,
+    "median_peak_width_seacr": 2256.0,
+    "conclusion": 3
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "frac_promoters_with_peak_macs2": {
+      "value": 0.33899895989243767,
+      "window": [
+       0.314,
+       0.36400000000000005
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_macs2": {
+      "value": 537.0,
+      "window": [
+       497,
+       577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_promoters_with_peak_seacr": {
+      "value": 0.3179938608285345,
+      "window": [
+       0.293,
+       0.343
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_seacr": {
+      "value": 2256.0,
+      "window": [
+       2106,
+       2406
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "conclusion": {
+      "value": 3,
+      "window": [
+       3,
+       3
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct05_promoter_denominator",
+   "name": "unfiltered_peaks",
+   "kind": "variant",
+   "description": "Use the peak files as delivered.",
+   "expect_pass": true,
+   "answer": {
+    "frac_promoters_with_peak_macs2": 0.3469558599695586,
+    "median_peak_width_macs2": 543.0,
+    "frac_promoters_with_peak_seacr": 0.3254946727549467,
+    "median_peak_width_seacr": 2258.0,
+    "conclusion": 3
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "frac_promoters_with_peak_macs2": {
+      "value": 0.3469558599695586,
+      "window": [
+       0.314,
+       0.36400000000000005
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_macs2": {
+      "value": 543.0,
+      "window": [
+       497,
+       577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_promoters_with_peak_seacr": {
+      "value": 0.3254946727549467,
+      "window": [
+       0.293,
+       0.343
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "median_peak_width_seacr": {
+      "value": 2258.0,
+      "window": [
+       2106,
+       2406
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "conclusion": {
+      "value": 3,
+      "window": [
+       3,
+       3
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct05_promoter_denominator",
+   "name": "share_of_peaks_at_promoters",
+   "kind": "trap",
+   "description": "Report the share of each caller's peaks that touch a promoter and conclude the caller with the higher share recovers more promoters.",
+   "expect_pass": false,
+   "answer": {
+    "frac_promoters_with_peak_macs2": 0.5009658397722652,
+    "median_peak_width_macs2": 537.0,
+    "frac_promoters_with_peak_seacr": 0.6119524067063278,
+    "median_peak_width_seacr": 2256.0,
+    "conclusion": 1
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "frac_promoters_with_peak_macs2": {
+      "value": 0.5009658397722652,
+      "window": [
+       0.314,
+       0.36400000000000005
+      ],
+      "ok": false,
+      "gap": 0.13696583977226512
+     },
+     "median_peak_width_macs2": {
+      "value": 537.0,
+      "window": [
+       497,
+       577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_promoters_with_peak_seacr": {
+      "value": 0.6119524067063278,
+      "window": [
+       0.293,
+       0.343
+      ],
+      "ok": false,
+      "gap": 0.26895240670632775
+     },
+     "median_peak_width_seacr": {
+      "value": 2256.0,
+      "window": [
+       2106,
+       2406
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "conclusion": {
+      "value": 1,
+      "window": [
+       3,
+       3
+      ],
+      "ok": false,
+      "gap": 2
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct05_promoter_denominator",
+   "name": "strand_ignored",
+   "kind": "trap",
+   "description": "Take the GTF start coordinate as the start site for every transcript, minus strand included.",
+   "expect_pass": false,
+   "answer": {
+    "frac_promoters_with_peak_macs2": 0.21261172879877915,
+    "median_peak_width_macs2": 537.0,
+    "frac_promoters_with_peak_seacr": 0.20492696751689557,
+    "median_peak_width_seacr": 2256.0,
+    "conclusion": 3
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "frac_promoters_with_peak_macs2": {
+      "value": 0.21261172879877915,
+      "window": [
+       0.314,
+       0.36400000000000005
+      ],
+      "ok": false,
+      "gap": 0.10138827120122085
+     },
+     "median_peak_width_macs2": {
+      "value": 537.0,
+      "window": [
+       497,
+       577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "frac_promoters_with_peak_seacr": {
+      "value": 0.20492696751689557,
+      "window": [
+       0.293,
+       0.343
+      ],
+      "ok": false,
+      "gap": 0.08807303248310441
+     },
+     "median_peak_width_seacr": {
+      "value": 2256.0,
+      "window": [
+       2106,
+       2406
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "conclusion": {
+      "value": 3,
+      "window": [
+       3,
+       3
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct06_open_chromatin_control",
+   "name": "reference",
+   "kind": "reference",
+   "description": "Split accessible sites by which ENCODE mark they carry, and read the H3K27me3 library at sites without H3K27me3 as the antibody-independent background.",
+   "expect_pass": true,
+   "answer": {
+    "h3k27ac_lib_marked_accessible": 0.23772152506947059,
+    "h3k27ac_lib_marked_not_accessible": 0.031071568713813235,
+    "h3k27ac_lib_accessible_unmarked": 0.03550907722245802,
+    "h3k27me3_lib_marked_accessible": 0.01220010495575434,
+    "h3k27me3_lib_accessible_unmarked": 0.012355836060714099,
+    "h3k27me3_lib_any_atac": 0.0784389033325455,
+    "h3k27me3_lib_any_atac_min100bp": 0.06538852177713543,
+    "interpretation": 5
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "h3k27ac_lib_marked_accessible": {
+      "value": 0.23772152506947059,
+      "window": [
+       0.2177,
+       0.2577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_marked_not_accessible": {
+      "value": 0.031071568713813235,
+      "window": [
+       0.025099999999999997,
+       0.0371
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_accessible_unmarked": {
+      "value": 0.03550907722245802,
+      "window": [
+       0.028499999999999998,
+       0.042499999999999996
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_marked_accessible": {
+      "value": 0.01220010495575434,
+      "window": [
+       0.0082,
+       0.0162
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_accessible_unmarked": {
+      "value": 0.012355836060714099,
+      "window": [
+       0.0084,
+       0.016399999999999998
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac": {
+      "value": 0.0784389033325455,
+      "window": [
+       0.07239999999999999,
+       0.0844
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac_min100bp": {
+      "value": 0.06538852177713543,
+      "window": [
+       0.0594,
+       0.0714
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 5,
+      "window": [
+       5,
+       5
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct06_open_chromatin_control",
+   "name": "standard_chromosomes_only",
+   "kind": "variant",
+   "description": "Count fragments on chr1-22, X and Y only.",
+   "expect_pass": true,
+   "answer": {
+    "h3k27ac_lib_marked_accessible": 0.24814800689021374,
+    "h3k27ac_lib_marked_not_accessible": 0.03243436977375878,
+    "h3k27ac_lib_accessible_unmarked": 0.03706650769924436,
+    "h3k27me3_lib_marked_accessible": 0.012342283058944989,
+    "h3k27me3_lib_accessible_unmarked": 0.012499829029694123,
+    "h3k27me3_lib_any_atac": 0.07935301796783935,
+    "h3k27me3_lib_any_atac_min100bp": 0.06603875323528821,
+    "interpretation": 5
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "h3k27ac_lib_marked_accessible": {
+      "value": 0.24814800689021374,
+      "window": [
+       0.2177,
+       0.2577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_marked_not_accessible": {
+      "value": 0.03243436977375878,
+      "window": [
+       0.025099999999999997,
+       0.0371
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_accessible_unmarked": {
+      "value": 0.03706650769924436,
+      "window": [
+       0.028499999999999998,
+       0.042499999999999996
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_marked_accessible": {
+      "value": 0.012342283058944989,
+      "window": [
+       0.0082,
+       0.0162
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_accessible_unmarked": {
+      "value": 0.012499829029694123,
+      "window": [
+       0.0084,
+       0.016399999999999998
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac": {
+      "value": 0.07935301796783935,
+      "window": [
+       0.07239999999999999,
+       0.0844
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac_min100bp": {
+      "value": 0.06603875323528821,
+      "window": [
+       0.0594,
+       0.0714
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 5,
+      "window": [
+       5,
+       5
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct06_open_chromatin_control",
+   "name": "book_ended_counts",
+   "kind": "variant",
+   "description": "1-based closed coordinates.",
+   "expect_pass": true,
+   "answer": {
+    "h3k27ac_lib_marked_accessible": 0.23791772440799852,
+    "h3k27ac_lib_marked_not_accessible": 0.031078575833046376,
+    "h3k27ac_lib_accessible_unmarked": 0.035517085358724464,
+    "h3k27me3_lib_marked_accessible": 0.012247675550516967,
+    "h3k27me3_lib_accessible_unmarked": 0.012365350179666626,
+    "h3k27me3_lib_any_atac": 0.07849849176177447,
+    "h3k27me3_lib_any_atac_min100bp": 0.06544129150494297,
+    "interpretation": 5
+   },
+   "own": {
+    "passed": true,
+    "fields": {
+     "h3k27ac_lib_marked_accessible": {
+      "value": 0.23791772440799852,
+      "window": [
+       0.2177,
+       0.2577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_marked_not_accessible": {
+      "value": 0.031078575833046376,
+      "window": [
+       0.025099999999999997,
+       0.0371
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_accessible_unmarked": {
+      "value": 0.035517085358724464,
+      "window": [
+       0.028499999999999998,
+       0.042499999999999996
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_marked_accessible": {
+      "value": 0.012247675550516967,
+      "window": [
+       0.0082,
+       0.0162
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_accessible_unmarked": {
+      "value": 0.012365350179666626,
+      "window": [
+       0.0084,
+       0.016399999999999998
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac": {
+      "value": 0.07849849176177447,
+      "window": [
+       0.07239999999999999,
+       0.0844
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac_min100bp": {
+      "value": 0.06544129150494297,
+      "window": [
+       0.0594,
+       0.0714
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 5,
+      "window": [
+       5,
+       5
+      ],
+      "ok": true,
+      "gap": 0.0
+     }
+    }
+   },
+   "latch": {
+    "passed": true,
+    "score": 1.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct06_open_chromatin_control",
+   "name": "h3k27me3_domains_ignored",
+   "kind": "trap",
+   "description": "Define unmarked accessible sites against H3K27ac only, so accessible sites inside H3K27me3 domains count as background for the H3K27me3 library.",
+   "expect_pass": false,
+   "answer": {
+    "h3k27ac_lib_marked_accessible": 0.23772152506947059,
+    "h3k27ac_lib_marked_not_accessible": 0.031071568713813235,
+    "h3k27ac_lib_accessible_unmarked": 0.047635397563924944,
+    "h3k27me3_lib_marked_accessible": 0.01220010495575434,
+    "h3k27me3_lib_accessible_unmarked": 0.06245568423540534,
+    "h3k27me3_lib_any_atac": 0.0784389033325455,
+    "h3k27me3_lib_any_atac_min100bp": 0.06538852177713543,
+    "interpretation": 3
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "h3k27ac_lib_marked_accessible": {
+      "value": 0.23772152506947059,
+      "window": [
+       0.2177,
+       0.2577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_marked_not_accessible": {
+      "value": 0.031071568713813235,
+      "window": [
+       0.025099999999999997,
+       0.0371
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_accessible_unmarked": {
+      "value": 0.047635397563924944,
+      "window": [
+       0.028499999999999998,
+       0.042499999999999996
+      ],
+      "ok": false,
+      "gap": 0.005135397563924948
+     },
+     "h3k27me3_lib_marked_accessible": {
+      "value": 0.01220010495575434,
+      "window": [
+       0.0082,
+       0.0162
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_accessible_unmarked": {
+      "value": 0.06245568423540534,
+      "window": [
+       0.0084,
+       0.016399999999999998
+      ],
+      "ok": false,
+      "gap": 0.04605568423540534
+     },
+     "h3k27me3_lib_any_atac": {
+      "value": 0.0784389033325455,
+      "window": [
+       0.07239999999999999,
+       0.0844
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac_min100bp": {
+      "value": 0.06538852177713543,
+      "window": [
+       0.0594,
+       0.0714
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 3,
+      "window": [
+       5,
+       5
+      ],
+      "ok": false,
+      "gap": 2
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct06_open_chromatin_control",
+   "name": "accessible_sites_not_partitioned",
+   "kind": "trap",
+   "description": "Use all ATAC peaks for every accessible class and conclude the library behaves like ATAC-seq.",
+   "expect_pass": false,
+   "answer": {
+    "h3k27ac_lib_marked_accessible": 0.25436793782483,
+    "h3k27ac_lib_marked_not_accessible": 0.031071568713813235,
+    "h3k27ac_lib_accessible_unmarked": 0.25436793782483,
+    "h3k27me3_lib_marked_accessible": 0.0784389033325455,
+    "h3k27me3_lib_accessible_unmarked": 0.0784389033325455,
+    "h3k27me3_lib_any_atac": 0.0784389033325455,
+    "h3k27me3_lib_any_atac_min100bp": 0.06538852177713543,
+    "interpretation": 2
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "h3k27ac_lib_marked_accessible": {
+      "value": 0.25436793782483,
+      "window": [
+       0.2177,
+       0.2577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_marked_not_accessible": {
+      "value": 0.031071568713813235,
+      "window": [
+       0.025099999999999997,
+       0.0371
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_accessible_unmarked": {
+      "value": 0.25436793782483,
+      "window": [
+       0.028499999999999998,
+       0.042499999999999996
+      ],
+      "ok": false,
+      "gap": 0.21186793782483004
+     },
+     "h3k27me3_lib_marked_accessible": {
+      "value": 0.0784389033325455,
+      "window": [
+       0.0082,
+       0.0162
+      ],
+      "ok": false,
+      "gap": 0.062238903332545496
+     },
+     "h3k27me3_lib_accessible_unmarked": {
+      "value": 0.0784389033325455,
+      "window": [
+       0.0084,
+       0.016399999999999998
+      ],
+      "ok": false,
+      "gap": 0.0620389033325455
+     },
+     "h3k27me3_lib_any_atac": {
+      "value": 0.0784389033325455,
+      "window": [
+       0.07239999999999999,
+       0.0844
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac_min100bp": {
+      "value": 0.06538852177713543,
+      "window": [
+       0.0594,
+       0.0714
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 2,
+      "window": [
+       5,
+       5
+      ],
+      "ok": false,
+      "gap": 3
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct06_open_chromatin_control",
+   "name": "called_atac_seq",
+   "kind": "trap",
+   "description": "Correct numbers, but concludes the profile is explained by accessibility.",
+   "expect_pass": false,
+   "answer": {
+    "h3k27ac_lib_marked_accessible": 0.23772152506947059,
+    "h3k27ac_lib_marked_not_accessible": 0.031071568713813235,
+    "h3k27ac_lib_accessible_unmarked": 0.03550907722245802,
+    "h3k27me3_lib_marked_accessible": 0.01220010495575434,
+    "h3k27me3_lib_accessible_unmarked": 0.012355836060714099,
+    "h3k27me3_lib_any_atac": 0.0784389033325455,
+    "h3k27me3_lib_any_atac_min100bp": 0.06538852177713543,
+    "interpretation": 2
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "h3k27ac_lib_marked_accessible": {
+      "value": 0.23772152506947059,
+      "window": [
+       0.2177,
+       0.2577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_marked_not_accessible": {
+      "value": 0.031071568713813235,
+      "window": [
+       0.025099999999999997,
+       0.0371
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_accessible_unmarked": {
+      "value": 0.03550907722245802,
+      "window": [
+       0.028499999999999998,
+       0.042499999999999996
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_marked_accessible": {
+      "value": 0.01220010495575434,
+      "window": [
+       0.0082,
+       0.0162
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_accessible_unmarked": {
+      "value": 0.012355836060714099,
+      "window": [
+       0.0084,
+       0.016399999999999998
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac": {
+      "value": 0.0784389033325455,
+      "window": [
+       0.07239999999999999,
+       0.0844
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac_min100bp": {
+      "value": 0.06538852177713543,
+      "window": [
+       0.0594,
+       0.0714
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 2,
+      "window": [
+       5,
+       5
+      ],
+      "ok": false,
+      "gap": 3
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  },
+  {
+   "task": "ct06_open_chromatin_control",
+   "name": "background_overestimated",
+   "kind": "trap",
+   "description": "Correct numbers, but takes the H3K27me3 library's share in ATAC peaks as the background rate.",
+   "expect_pass": false,
+   "answer": {
+    "h3k27ac_lib_marked_accessible": 0.23772152506947059,
+    "h3k27ac_lib_marked_not_accessible": 0.031071568713813235,
+    "h3k27ac_lib_accessible_unmarked": 0.03550907722245802,
+    "h3k27me3_lib_marked_accessible": 0.01220010495575434,
+    "h3k27me3_lib_accessible_unmarked": 0.012355836060714099,
+    "h3k27me3_lib_any_atac": 0.0784389033325455,
+    "h3k27me3_lib_any_atac_min100bp": 0.06538852177713543,
+    "interpretation": 3
+   },
+   "own": {
+    "passed": false,
+    "fields": {
+     "h3k27ac_lib_marked_accessible": {
+      "value": 0.23772152506947059,
+      "window": [
+       0.2177,
+       0.2577
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_marked_not_accessible": {
+      "value": 0.031071568713813235,
+      "window": [
+       0.025099999999999997,
+       0.0371
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27ac_lib_accessible_unmarked": {
+      "value": 0.03550907722245802,
+      "window": [
+       0.028499999999999998,
+       0.042499999999999996
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_marked_accessible": {
+      "value": 0.01220010495575434,
+      "window": [
+       0.0082,
+       0.0162
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_accessible_unmarked": {
+      "value": 0.012355836060714099,
+      "window": [
+       0.0084,
+       0.016399999999999998
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac": {
+      "value": 0.0784389033325455,
+      "window": [
+       0.07239999999999999,
+       0.0844
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "h3k27me3_lib_any_atac_min100bp": {
+      "value": 0.06538852177713543,
+      "window": [
+       0.0594,
+       0.0714
+      ],
+      "ok": true,
+      "gap": 0.0
+     },
+     "interpretation": {
+      "value": 3,
+      "window": [
+       5,
+       5
+      ],
+      "ok": false,
+      "gap": 2
+     }
+    }
+   },
+   "latch": {
+    "passed": false,
+    "score": 0.0
+   },
+   "as_expected": true
+  }
+ ]
+}

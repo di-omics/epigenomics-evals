@@ -1,0 +1,4986 @@
+{
+ "task_id": "fig4a_peak_set_choice",
+ "status": "independent prototype",
+ "inputs": [
+  {
+   "check": "workspace holds only the prompt, the manifest, the schema and 3 inputs",
+   "ok": true,
+   "detail": "answer_schema.json, inputs/peaks_A.bed, inputs/peaks_B.bed, inputs/reference_peaks.bed, manifest.json, task.md"
+  },
+  {
+   "check": "every input matches its SHA-256 and size in the manifest",
+   "ok": true,
+   "detail": "3 files checked"
+  },
+  {
+   "check": "no caller, antibody, sample, accession or paper name anywhere in the workspace",
+   "ok": true,
+   "detail": "0 matches"
+  },
+  {
+   "check": "peaks_A.bed: 3 columns, sorted, no duplicate rows, no zero-length interval",
+   "ok": true,
+   "detail": "11,094 rows"
+  },
+  {
+   "check": "peaks_A.bed: every interval fits hg19",
+   "ok": true,
+   "detail": "0 end beyond an hg19 chromosome end; 174 end beyond the hg38 end of the same chromosome, so these cannot be hg38 coordinates"
+  },
+  {
+   "check": "peaks_B.bed: 3 columns, sorted, no duplicate rows, no zero-length interval",
+   "ok": true,
+   "detail": "19,672 rows"
+  },
+  {
+   "check": "peaks_B.bed: every interval fits hg19",
+   "ok": true,
+   "detail": "0 end beyond an hg19 chromosome end; 273 end beyond the hg38 end of the same chromosome, so these cannot be hg38 coordinates"
+  },
+  {
+   "check": "reference_peaks.bed: 3 columns, sorted, no duplicate rows, no zero-length interval",
+   "ok": true,
+   "detail": "51,176 rows"
+  },
+  {
+   "check": "reference_peaks.bed: every interval fits hg19",
+   "ok": true,
+   "detail": "0 end beyond an hg19 chromosome end; 579 end beyond the hg38 end of the same chromosome, so these cannot be hg38 coordinates"
+  },
+  {
+   "check": "peaks_A.bed: chr1-22, X, Y only",
+   "ok": true,
+   "detail": "24 chromosomes"
+  },
+  {
+   "check": "peaks_A.bed: no peak overlaps the hg19 blacklist v2",
+   "ok": true,
+   "detail": "0 of 11,094 peaks overlap it; counted when the pilot was built and recounted by this command whenever the blacklist file has been fetched"
+  },
+  {
+   "check": "peaks_B.bed: chr1-22, X, Y only",
+   "ok": true,
+   "detail": "24 chromosomes"
+  },
+  {
+   "check": "peaks_B.bed: no peak overlaps the hg19 blacklist v2",
+   "ok": true,
+   "detail": "0 of 19,672 peaks overlap it; counted when the pilot was built and recounted by this command whenever the blacklist file has been fetched"
+  }
+ ],
+ "instances": [
+  {
+   "instance": "primary",
+   "kind": "real",
+   "what": "the pilot instance an agent receives",
+   "key": {
+    "n_peaks_a": 11094,
+    "n_peaks_b": 19672,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 10243,
+    "n_b_peaks_overlapping_reference": 16540,
+    "n_reference_peaks_overlapped_by_a": 19190,
+    "n_reference_peaks_overlapped_by_b": 17365,
+    "answer": "A"
+   },
+   "derived": {
+    "precision_a": "10,243 of 11,094 (92.3292%)",
+    "precision_b": "16,540 of 19,672 (84.0789%)",
+    "recovered_by_a": "19,190 of 51,176 (37.4980%)",
+    "recovered_by_b": "17,365 of 51,176 (33.9319%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 11094,
+     "n_peaks_b": 19672,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 10243,
+     "n_b_peaks_overlapping_reference": 16540,
+     "n_reference_peaks_overlapped_by_a": 19190,
+     "n_reference_peaks_overlapped_by_b": 17365,
+     "answer": "A"
+    },
+    "sqlite": {
+     "n_peaks_a": 11094,
+     "n_peaks_b": 19672,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 10243,
+     "n_b_peaks_overlapping_reference": 16540,
+     "n_reference_peaks_overlapped_by_a": 19190,
+     "n_reference_peaks_overlapped_by_b": 17365,
+     "answer": "A"
+    },
+    "overlapping_pairs": {
+     "a": 19273,
+     "b": 20102
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 16540,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 17365,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 19273,
+      "n_b_peaks_overlapping_reference": 20102,
+      "n_reference_peaks_overlapped_by_a": 19273,
+      "n_reference_peaks_overlapped_by_b": 20102,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 19190,
+      "n_b_peaks_overlapping_reference": 17365,
+      "n_reference_peaks_overlapped_by_a": 10243,
+      "n_reference_peaks_overlapped_by_b": 16540,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 8321,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 14755,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 16540,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 17365,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 16540,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 17365,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 16540,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 17365,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 16540,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 17365,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 16541,
+      "n_reference_peaks_overlapped_by_a": 19194,
+      "n_reference_peaks_overlapped_by_b": 17372,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.9233,
+      "n_b_peaks_overlapping_reference": 0.8408,
+      "n_reference_peaks_overlapped_by_a": 0.375,
+      "n_reference_peaks_overlapped_by_b": 0.3393,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": true
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_more_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_fewer_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_wider_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "B",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "label_swap",
+   "kind": "built",
+   "what": "the primary instance with the 2 labels exchanged",
+   "key": {
+    "n_peaks_a": 19672,
+    "n_peaks_b": 11094,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 16540,
+    "n_b_peaks_overlapping_reference": 10243,
+    "n_reference_peaks_overlapped_by_a": 17365,
+    "n_reference_peaks_overlapped_by_b": 19190,
+    "answer": "B"
+   },
+   "derived": {
+    "precision_a": "16,540 of 19,672 (84.0789%)",
+    "precision_b": "10,243 of 11,094 (92.3292%)",
+    "recovered_by_a": "17,365 of 51,176 (33.9319%)",
+    "recovered_by_b": "19,190 of 51,176 (37.4980%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 19672,
+     "n_peaks_b": 11094,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 16540,
+     "n_b_peaks_overlapping_reference": 10243,
+     "n_reference_peaks_overlapped_by_a": 17365,
+     "n_reference_peaks_overlapped_by_b": 19190,
+     "answer": "B"
+    },
+    "sqlite": {
+     "n_peaks_a": 19672,
+     "n_peaks_b": 11094,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 16540,
+     "n_b_peaks_overlapping_reference": 10243,
+     "n_reference_peaks_overlapped_by_a": 17365,
+     "n_reference_peaks_overlapped_by_b": 19190,
+     "answer": "B"
+    },
+    "overlapping_pairs": {
+     "a": 20102,
+     "b": 19273
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16540,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 17365,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20102,
+      "n_b_peaks_overlapping_reference": 19273,
+      "n_reference_peaks_overlapped_by_a": 20102,
+      "n_reference_peaks_overlapped_by_b": 19273,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 17365,
+      "n_b_peaks_overlapping_reference": 19190,
+      "n_reference_peaks_overlapped_by_a": 16540,
+      "n_reference_peaks_overlapped_by_b": 10243,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 14755,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 8321,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16540,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 17365,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16540,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 17365,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16540,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 17365,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16540,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 17365,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16541,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 17372,
+      "n_reference_peaks_overlapped_by_b": 19194,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 19672,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.8408,
+      "n_b_peaks_overlapping_reference": 0.9233,
+      "n_reference_peaks_overlapped_by_a": 0.3393,
+      "n_reference_peaks_overlapped_by_b": 0.375,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": false
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_more_peaks": {
+     "guess": "A",
+     "correct": false
+    },
+    "set_with_fewer_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_wider_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "A",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "tie_identical_sets",
+   "kind": "built",
+   "what": "both labels hold the same peak set, so both qualify and recover the same reference peaks",
+   "key": {
+    "n_peaks_a": 11094,
+    "n_peaks_b": 11094,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 10243,
+    "n_b_peaks_overlapping_reference": 10243,
+    "n_reference_peaks_overlapped_by_a": 19190,
+    "n_reference_peaks_overlapped_by_b": 19190,
+    "answer": "tie"
+   },
+   "derived": {
+    "precision_a": "10,243 of 11,094 (92.3292%)",
+    "precision_b": "10,243 of 11,094 (92.3292%)",
+    "recovered_by_a": "19,190 of 51,176 (37.4980%)",
+    "recovered_by_b": "19,190 of 51,176 (37.4980%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 11094,
+     "n_peaks_b": 11094,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 10243,
+     "n_b_peaks_overlapping_reference": 10243,
+     "n_reference_peaks_overlapped_by_a": 19190,
+     "n_reference_peaks_overlapped_by_b": 19190,
+     "answer": "tie"
+    },
+    "sqlite": {
+     "n_peaks_a": 11094,
+     "n_peaks_b": 11094,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 10243,
+     "n_b_peaks_overlapping_reference": 10243,
+     "n_reference_peaks_overlapped_by_a": 19190,
+     "n_reference_peaks_overlapped_by_b": 19190,
+     "answer": "tie"
+    },
+    "overlapping_pairs": {
+     "a": 19273,
+     "b": 19273
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "tie"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 19273,
+      "n_b_peaks_overlapping_reference": 19273,
+      "n_reference_peaks_overlapped_by_a": 19273,
+      "n_reference_peaks_overlapped_by_b": 19273,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 19190,
+      "n_b_peaks_overlapping_reference": 19190,
+      "n_reference_peaks_overlapped_by_a": 10243,
+      "n_reference_peaks_overlapped_by_b": 10243,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 8321,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 8321,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "tie"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "tie"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 19190,
+      "answer": "tie"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 10243,
+      "n_reference_peaks_overlapped_by_a": 19194,
+      "n_reference_peaks_overlapped_by_b": 19194,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 11094,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.9233,
+      "n_b_peaks_overlapping_reference": 0.9233,
+      "n_reference_peaks_overlapped_by_a": 0.375,
+      "n_reference_peaks_overlapped_by_b": 0.375,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": false
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_more_peaks": {
+     "guess": "tie",
+     "correct": true
+    },
+    "set_with_fewer_peaks": {
+     "guess": "tie",
+     "correct": true
+    },
+    "set_with_wider_peaks": {
+     "guess": "tie",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "tie",
+     "correct": true
+    }
+   }
+  },
+  {
+   "instance": "boundary_exactly_75",
+   "kind": "built",
+   "what": "a real pair whose higher-recovery set starts at 74.49% precision, with 189 of its peaks removed so that it sits exactly on 75%",
+   "key": {
+    "n_peaks_a": 27692,
+    "n_peaks_b": 10533,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 20769,
+    "n_b_peaks_overlapping_reference": 10011,
+    "n_reference_peaks_overlapped_by_a": 28899,
+    "n_reference_peaks_overlapped_by_b": 24351,
+    "answer": "B"
+   },
+   "derived": {
+    "precision_a": "20,769 of 27,692 (75.0000%)",
+    "precision_b": "10,011 of 10,533 (95.0441%)",
+    "recovered_by_a": "28,899 of 51,176 (56.4698%)",
+    "recovered_by_b": "24,351 of 51,176 (47.5829%)",
+    "a_meets_bar": false,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 27692,
+     "n_peaks_b": 10533,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 20769,
+     "n_b_peaks_overlapping_reference": 10011,
+     "n_reference_peaks_overlapped_by_a": 28899,
+     "n_reference_peaks_overlapped_by_b": 24351,
+     "answer": "B"
+    },
+    "sqlite": {
+     "n_peaks_a": 27692,
+     "n_peaks_b": 10533,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 20769,
+     "n_b_peaks_overlapping_reference": 10011,
+     "n_reference_peaks_overlapped_by_a": 28899,
+     "n_reference_peaks_overlapped_by_b": 24351,
+     "answer": "B"
+    },
+    "overlapping_pairs": {
+     "a": 30203,
+     "b": 24355
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 30203,
+      "n_b_peaks_overlapping_reference": 24355,
+      "n_reference_peaks_overlapped_by_a": 30203,
+      "n_reference_peaks_overlapped_by_b": 24355,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 28899,
+      "n_b_peaks_overlapping_reference": 24351,
+      "n_reference_peaks_overlapped_by_a": 20769,
+      "n_reference_peaks_overlapped_by_b": 10011,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20770,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 7900,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20770,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28911,
+      "n_reference_peaks_overlapped_by_b": 24354,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 27692,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.75,
+      "n_b_peaks_overlapping_reference": 0.9504,
+      "n_reference_peaks_overlapped_by_a": 0.5647,
+      "n_reference_peaks_overlapped_by_b": 0.4758,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": false
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_more_peaks": {
+     "guess": "A",
+     "correct": false
+    },
+    "set_with_fewer_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_wider_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "A",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "boundary_one_peak_above_75",
+   "kind": "built",
+   "what": "a real pair whose higher-recovery set starts at 74.49% precision, with 190 of its peaks removed so that it sits one peak past 75%",
+   "key": {
+    "n_peaks_a": 27691,
+    "n_peaks_b": 10533,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 20769,
+    "n_b_peaks_overlapping_reference": 10011,
+    "n_reference_peaks_overlapped_by_a": 28899,
+    "n_reference_peaks_overlapped_by_b": 24351,
+    "answer": "A"
+   },
+   "derived": {
+    "precision_a": "20,769 of 27,691 (75.0027%)",
+    "precision_b": "10,011 of 10,533 (95.0441%)",
+    "recovered_by_a": "28,899 of 51,176 (56.4698%)",
+    "recovered_by_b": "24,351 of 51,176 (47.5829%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 27691,
+     "n_peaks_b": 10533,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 20769,
+     "n_b_peaks_overlapping_reference": 10011,
+     "n_reference_peaks_overlapped_by_a": 28899,
+     "n_reference_peaks_overlapped_by_b": 24351,
+     "answer": "A"
+    },
+    "sqlite": {
+     "n_peaks_a": 27691,
+     "n_peaks_b": 10533,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 20769,
+     "n_b_peaks_overlapping_reference": 10011,
+     "n_reference_peaks_overlapped_by_a": 28899,
+     "n_reference_peaks_overlapped_by_b": 24351,
+     "answer": "A"
+    },
+    "overlapping_pairs": {
+     "a": 30203,
+     "b": 24355
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 30203,
+      "n_b_peaks_overlapping_reference": 24355,
+      "n_reference_peaks_overlapped_by_a": 30203,
+      "n_reference_peaks_overlapped_by_b": 24355,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 28899,
+      "n_b_peaks_overlapping_reference": 24351,
+      "n_reference_peaks_overlapped_by_a": 20769,
+      "n_reference_peaks_overlapped_by_b": 10011,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 7900,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20770,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28911,
+      "n_reference_peaks_overlapped_by_b": 24354,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 27691,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.75,
+      "n_b_peaks_overlapping_reference": 0.9504,
+      "n_reference_peaks_overlapped_by_a": 0.5647,
+      "n_reference_peaks_overlapped_by_b": 0.4758,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": true
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_more_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_fewer_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_wider_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_narrower_peaks": {
+     "guess": "A",
+     "correct": true
+    }
+   }
+  },
+  {
+   "instance": "pair_01",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 14825,
+    "n_peaks_b": 33468,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 12494,
+    "n_b_peaks_overlapping_reference": 21108,
+    "n_reference_peaks_overlapped_by_a": 29059,
+    "n_reference_peaks_overlapped_by_b": 29660,
+    "answer": "A"
+   },
+   "derived": {
+    "precision_a": "12,494 of 14,825 (84.2766%)",
+    "precision_b": "21,108 of 33,468 (63.0692%)",
+    "recovered_by_a": "29,059 of 51,176 (56.7825%)",
+    "recovered_by_b": "29,660 of 51,176 (57.9569%)",
+    "a_meets_bar": true,
+    "b_meets_bar": false
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 14825,
+     "n_peaks_b": 33468,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 12494,
+     "n_b_peaks_overlapping_reference": 21108,
+     "n_reference_peaks_overlapped_by_a": 29059,
+     "n_reference_peaks_overlapped_by_b": 29660,
+     "answer": "A"
+    },
+    "sqlite": {
+     "n_peaks_a": 14825,
+     "n_peaks_b": 33468,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 12494,
+     "n_b_peaks_overlapping_reference": 21108,
+     "n_reference_peaks_overlapped_by_a": 29059,
+     "n_reference_peaks_overlapped_by_b": 29660,
+     "answer": "A"
+    },
+    "overlapping_pairs": {
+     "a": 29066,
+     "b": 31120
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 12494,
+      "n_b_peaks_overlapping_reference": 21108,
+      "n_reference_peaks_overlapped_by_a": 29059,
+      "n_reference_peaks_overlapped_by_b": 29660,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 29066,
+      "n_b_peaks_overlapping_reference": 31120,
+      "n_reference_peaks_overlapped_by_a": 29066,
+      "n_reference_peaks_overlapped_by_b": 31120,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 29059,
+      "n_b_peaks_overlapping_reference": 29660,
+      "n_reference_peaks_overlapped_by_a": 12494,
+      "n_reference_peaks_overlapped_by_b": 21108,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11119,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 25102,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 12494,
+      "n_b_peaks_overlapping_reference": 21108,
+      "n_reference_peaks_overlapped_by_a": 29059,
+      "n_reference_peaks_overlapped_by_b": 29660,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 12494,
+      "n_b_peaks_overlapping_reference": 21108,
+      "n_reference_peaks_overlapped_by_a": 29059,
+      "n_reference_peaks_overlapped_by_b": 29660,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 12494,
+      "n_b_peaks_overlapping_reference": 21108,
+      "n_reference_peaks_overlapped_by_a": 29059,
+      "n_reference_peaks_overlapped_by_b": 29660,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 12494,
+      "n_b_peaks_overlapping_reference": 21108,
+      "n_reference_peaks_overlapped_by_a": 29059,
+      "n_reference_peaks_overlapped_by_b": 29660,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 12494,
+      "n_b_peaks_overlapping_reference": 21111,
+      "n_reference_peaks_overlapped_by_a": 29061,
+      "n_reference_peaks_overlapped_by_b": 29676,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 14825,
+      "n_peaks_b": 33468,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.8428,
+      "n_b_peaks_overlapping_reference": 0.6307,
+      "n_reference_peaks_overlapped_by_a": 0.5678,
+      "n_reference_peaks_overlapped_by_b": 0.5796,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": true
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_more_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_fewer_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_wider_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "B",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "pair_02",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 32614,
+    "n_peaks_b": 15004,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 21061,
+    "n_b_peaks_overlapping_reference": 12696,
+    "n_reference_peaks_overlapped_by_a": 29732,
+    "n_reference_peaks_overlapped_by_b": 29663,
+    "answer": "B"
+   },
+   "derived": {
+    "precision_a": "21,061 of 32,614 (64.5766%)",
+    "precision_b": "12,696 of 15,004 (84.6174%)",
+    "recovered_by_a": "29,732 of 51,176 (58.0975%)",
+    "recovered_by_b": "29,663 of 51,176 (57.9627%)",
+    "a_meets_bar": false,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 32614,
+     "n_peaks_b": 15004,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 21061,
+     "n_b_peaks_overlapping_reference": 12696,
+     "n_reference_peaks_overlapped_by_a": 29732,
+     "n_reference_peaks_overlapped_by_b": 29663,
+     "answer": "B"
+    },
+    "sqlite": {
+     "n_peaks_a": 32614,
+     "n_peaks_b": 15004,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 21061,
+     "n_b_peaks_overlapping_reference": 12696,
+     "n_reference_peaks_overlapped_by_a": 29732,
+     "n_reference_peaks_overlapped_by_b": 29663,
+     "answer": "B"
+    },
+    "overlapping_pairs": {
+     "a": 31107,
+     "b": 29672
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 21061,
+      "n_b_peaks_overlapping_reference": 12696,
+      "n_reference_peaks_overlapped_by_a": 29732,
+      "n_reference_peaks_overlapped_by_b": 29663,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 31107,
+      "n_b_peaks_overlapping_reference": 29672,
+      "n_reference_peaks_overlapped_by_a": 31107,
+      "n_reference_peaks_overlapped_by_b": 29672,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 29732,
+      "n_b_peaks_overlapping_reference": 29663,
+      "n_reference_peaks_overlapped_by_a": 21061,
+      "n_reference_peaks_overlapped_by_b": 12696,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 24461,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 11254,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 21061,
+      "n_b_peaks_overlapping_reference": 12696,
+      "n_reference_peaks_overlapped_by_a": 29732,
+      "n_reference_peaks_overlapped_by_b": 29663,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 21061,
+      "n_b_peaks_overlapping_reference": 12696,
+      "n_reference_peaks_overlapped_by_a": 29732,
+      "n_reference_peaks_overlapped_by_b": 29663,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 21061,
+      "n_b_peaks_overlapping_reference": 12696,
+      "n_reference_peaks_overlapped_by_a": 29732,
+      "n_reference_peaks_overlapped_by_b": 29663,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 21061,
+      "n_b_peaks_overlapping_reference": 12696,
+      "n_reference_peaks_overlapped_by_a": 29732,
+      "n_reference_peaks_overlapped_by_b": 29663,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 21061,
+      "n_b_peaks_overlapping_reference": 12696,
+      "n_reference_peaks_overlapped_by_a": 29741,
+      "n_reference_peaks_overlapped_by_b": 29666,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 32614,
+      "n_peaks_b": 15004,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.6458,
+      "n_b_peaks_overlapping_reference": 0.8462,
+      "n_reference_peaks_overlapped_by_a": 0.581,
+      "n_reference_peaks_overlapped_by_b": 0.5796,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": false
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_more_peaks": {
+     "guess": "A",
+     "correct": false
+    },
+    "set_with_fewer_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_wider_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "A",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "pair_03",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 20213,
+    "n_peaks_b": 13791,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 16191,
+    "n_b_peaks_overlapping_reference": 11948,
+    "n_reference_peaks_overlapped_by_a": 20017,
+    "n_reference_peaks_overlapped_by_b": 25208,
+    "answer": "B"
+   },
+   "derived": {
+    "precision_a": "16,191 of 20,213 (80.1019%)",
+    "precision_b": "11,948 of 13,791 (86.6362%)",
+    "recovered_by_a": "20,017 of 51,176 (39.1140%)",
+    "recovered_by_b": "25,208 of 51,176 (49.2575%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 20213,
+     "n_peaks_b": 13791,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 16191,
+     "n_b_peaks_overlapping_reference": 11948,
+     "n_reference_peaks_overlapped_by_a": 20017,
+     "n_reference_peaks_overlapped_by_b": 25208,
+     "answer": "B"
+    },
+    "sqlite": {
+     "n_peaks_a": 20213,
+     "n_peaks_b": 13791,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 16191,
+     "n_b_peaks_overlapping_reference": 11948,
+     "n_reference_peaks_overlapped_by_a": 20017,
+     "n_reference_peaks_overlapped_by_b": 25208,
+     "answer": "B"
+    },
+    "overlapping_pairs": {
+     "a": 21626,
+     "b": 25254
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16191,
+      "n_b_peaks_overlapping_reference": 11948,
+      "n_reference_peaks_overlapped_by_a": 20017,
+      "n_reference_peaks_overlapped_by_b": 25208,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 21626,
+      "n_b_peaks_overlapping_reference": 25254,
+      "n_reference_peaks_overlapped_by_a": 21626,
+      "n_reference_peaks_overlapped_by_b": 25254,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20017,
+      "n_b_peaks_overlapping_reference": 25208,
+      "n_reference_peaks_overlapped_by_a": 16191,
+      "n_reference_peaks_overlapped_by_b": 11948,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 15160,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 10344,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16191,
+      "n_b_peaks_overlapping_reference": 11948,
+      "n_reference_peaks_overlapped_by_a": 20017,
+      "n_reference_peaks_overlapped_by_b": 25208,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16191,
+      "n_b_peaks_overlapping_reference": 11948,
+      "n_reference_peaks_overlapped_by_a": 20017,
+      "n_reference_peaks_overlapped_by_b": 25208,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16191,
+      "n_b_peaks_overlapping_reference": 11948,
+      "n_reference_peaks_overlapped_by_a": 20017,
+      "n_reference_peaks_overlapped_by_b": 25208,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16191,
+      "n_b_peaks_overlapping_reference": 11948,
+      "n_reference_peaks_overlapped_by_a": 20017,
+      "n_reference_peaks_overlapped_by_b": 25208,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 16193,
+      "n_b_peaks_overlapping_reference": 11949,
+      "n_reference_peaks_overlapped_by_a": 20027,
+      "n_reference_peaks_overlapped_by_b": 25215,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 20213,
+      "n_peaks_b": 13791,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.801,
+      "n_b_peaks_overlapping_reference": 0.8664,
+      "n_reference_peaks_overlapped_by_a": 0.3911,
+      "n_reference_peaks_overlapped_by_b": 0.4926,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": false
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_more_peaks": {
+     "guess": "A",
+     "correct": false
+    },
+    "set_with_fewer_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_wider_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "A",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "pair_04",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 27881,
+    "n_peaks_b": 10533,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 20769,
+    "n_b_peaks_overlapping_reference": 10011,
+    "n_reference_peaks_overlapped_by_a": 28899,
+    "n_reference_peaks_overlapped_by_b": 24351,
+    "answer": "B"
+   },
+   "derived": {
+    "precision_a": "20,769 of 27,881 (74.4916%)",
+    "precision_b": "10,011 of 10,533 (95.0441%)",
+    "recovered_by_a": "28,899 of 51,176 (56.4698%)",
+    "recovered_by_b": "24,351 of 51,176 (47.5829%)",
+    "a_meets_bar": false,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 27881,
+     "n_peaks_b": 10533,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 20769,
+     "n_b_peaks_overlapping_reference": 10011,
+     "n_reference_peaks_overlapped_by_a": 28899,
+     "n_reference_peaks_overlapped_by_b": 24351,
+     "answer": "B"
+    },
+    "sqlite": {
+     "n_peaks_a": 27881,
+     "n_peaks_b": 10533,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 20769,
+     "n_b_peaks_overlapping_reference": 10011,
+     "n_reference_peaks_overlapped_by_a": 28899,
+     "n_reference_peaks_overlapped_by_b": 24351,
+     "answer": "B"
+    },
+    "overlapping_pairs": {
+     "a": 30203,
+     "b": 24355
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 30203,
+      "n_b_peaks_overlapping_reference": 24355,
+      "n_reference_peaks_overlapped_by_a": 30203,
+      "n_reference_peaks_overlapped_by_b": 24355,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 28899,
+      "n_b_peaks_overlapping_reference": 24351,
+      "n_reference_peaks_overlapped_by_a": 20769,
+      "n_reference_peaks_overlapped_by_b": 10011,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20911,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 7900,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20769,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28899,
+      "n_reference_peaks_overlapped_by_b": 24351,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 20771,
+      "n_b_peaks_overlapping_reference": 10011,
+      "n_reference_peaks_overlapped_by_a": 28912,
+      "n_reference_peaks_overlapped_by_b": 24354,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 27881,
+      "n_peaks_b": 10533,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.7449,
+      "n_b_peaks_overlapping_reference": 0.9504,
+      "n_reference_peaks_overlapped_by_a": 0.5647,
+      "n_reference_peaks_overlapped_by_b": 0.4758,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": false
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_more_peaks": {
+     "guess": "A",
+     "correct": false
+    },
+    "set_with_fewer_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_wider_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "A",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "pair_05",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 20904,
+    "n_peaks_b": 11219,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 17749,
+    "n_b_peaks_overlapping_reference": 10753,
+    "n_reference_peaks_overlapped_by_a": 25669,
+    "n_reference_peaks_overlapped_by_b": 25315,
+    "answer": "A"
+   },
+   "derived": {
+    "precision_a": "17,749 of 20,904 (84.9072%)",
+    "precision_b": "10,753 of 11,219 (95.8463%)",
+    "recovered_by_a": "25,669 of 51,176 (50.1583%)",
+    "recovered_by_b": "25,315 of 51,176 (49.4665%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 20904,
+     "n_peaks_b": 11219,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 17749,
+     "n_b_peaks_overlapping_reference": 10753,
+     "n_reference_peaks_overlapped_by_a": 25669,
+     "n_reference_peaks_overlapped_by_b": 25315,
+     "answer": "A"
+    },
+    "sqlite": {
+     "n_peaks_a": 20904,
+     "n_peaks_b": 11219,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 17749,
+     "n_b_peaks_overlapping_reference": 10753,
+     "n_reference_peaks_overlapped_by_a": 25669,
+     "n_reference_peaks_overlapped_by_b": 25315,
+     "answer": "A"
+    },
+    "overlapping_pairs": {
+     "a": 26535,
+     "b": 25320
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 17749,
+      "n_b_peaks_overlapping_reference": 10753,
+      "n_reference_peaks_overlapped_by_a": 25669,
+      "n_reference_peaks_overlapped_by_b": 25315,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 26535,
+      "n_b_peaks_overlapping_reference": 25320,
+      "n_reference_peaks_overlapped_by_a": 26535,
+      "n_reference_peaks_overlapped_by_b": 25320,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 25669,
+      "n_b_peaks_overlapping_reference": 25315,
+      "n_reference_peaks_overlapped_by_a": 17749,
+      "n_reference_peaks_overlapped_by_b": 10753,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 15679,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 8415,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 17749,
+      "n_b_peaks_overlapping_reference": 10753,
+      "n_reference_peaks_overlapped_by_a": 25669,
+      "n_reference_peaks_overlapped_by_b": 25315,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 17749,
+      "n_b_peaks_overlapping_reference": 10753,
+      "n_reference_peaks_overlapped_by_a": 25669,
+      "n_reference_peaks_overlapped_by_b": 25315,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 17749,
+      "n_b_peaks_overlapping_reference": 10753,
+      "n_reference_peaks_overlapped_by_a": 25669,
+      "n_reference_peaks_overlapped_by_b": 25315,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 17749,
+      "n_b_peaks_overlapping_reference": 10753,
+      "n_reference_peaks_overlapped_by_a": 25669,
+      "n_reference_peaks_overlapped_by_b": 25315,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 17753,
+      "n_b_peaks_overlapping_reference": 10753,
+      "n_reference_peaks_overlapped_by_a": 25682,
+      "n_reference_peaks_overlapped_by_b": 25316,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 20904,
+      "n_peaks_b": 11219,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.8491,
+      "n_b_peaks_overlapping_reference": 0.9585,
+      "n_reference_peaks_overlapped_by_a": 0.5016,
+      "n_reference_peaks_overlapped_by_b": 0.4947,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": true
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_more_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_fewer_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_wider_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_narrower_peaks": {
+     "guess": "A",
+     "correct": true
+    }
+   }
+  },
+  {
+   "instance": "pair_06",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 12093,
+    "n_peaks_b": 25634,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 11424,
+    "n_b_peaks_overlapping_reference": 19955,
+    "n_reference_peaks_overlapped_by_a": 28436,
+    "n_reference_peaks_overlapped_by_b": 30479,
+    "answer": "B"
+   },
+   "derived": {
+    "precision_a": "11,424 of 12,093 (94.4679%)",
+    "precision_b": "19,955 of 25,634 (77.8458%)",
+    "recovered_by_a": "28,436 of 51,176 (55.5651%)",
+    "recovered_by_b": "30,479 of 51,176 (59.5572%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 12093,
+     "n_peaks_b": 25634,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 11424,
+     "n_b_peaks_overlapping_reference": 19955,
+     "n_reference_peaks_overlapped_by_a": 28436,
+     "n_reference_peaks_overlapped_by_b": 30479,
+     "answer": "B"
+    },
+    "sqlite": {
+     "n_peaks_a": 12093,
+     "n_peaks_b": 25634,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 11424,
+     "n_b_peaks_overlapping_reference": 19955,
+     "n_reference_peaks_overlapped_by_a": 28436,
+     "n_reference_peaks_overlapped_by_b": 30479,
+     "answer": "B"
+    },
+    "overlapping_pairs": {
+     "a": 28437,
+     "b": 31218
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11424,
+      "n_b_peaks_overlapping_reference": 19955,
+      "n_reference_peaks_overlapped_by_a": 28436,
+      "n_reference_peaks_overlapped_by_b": 30479,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 28437,
+      "n_b_peaks_overlapping_reference": 31218,
+      "n_reference_peaks_overlapped_by_a": 28437,
+      "n_reference_peaks_overlapped_by_b": 31218,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 28436,
+      "n_b_peaks_overlapping_reference": 30479,
+      "n_reference_peaks_overlapped_by_a": 11424,
+      "n_reference_peaks_overlapped_by_b": 19955,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 9070,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 19226,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11424,
+      "n_b_peaks_overlapping_reference": 19955,
+      "n_reference_peaks_overlapped_by_a": 28436,
+      "n_reference_peaks_overlapped_by_b": 30479,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11424,
+      "n_b_peaks_overlapping_reference": 19955,
+      "n_reference_peaks_overlapped_by_a": 28436,
+      "n_reference_peaks_overlapped_by_b": 30479,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11424,
+      "n_b_peaks_overlapping_reference": 19955,
+      "n_reference_peaks_overlapped_by_a": 28436,
+      "n_reference_peaks_overlapped_by_b": 30479,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11424,
+      "n_b_peaks_overlapping_reference": 19955,
+      "n_reference_peaks_overlapped_by_a": 28436,
+      "n_reference_peaks_overlapped_by_b": 30479,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11424,
+      "n_b_peaks_overlapping_reference": 19955,
+      "n_reference_peaks_overlapped_by_a": 28436,
+      "n_reference_peaks_overlapped_by_b": 30489,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 12093,
+      "n_peaks_b": 25634,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.9447,
+      "n_b_peaks_overlapping_reference": 0.7785,
+      "n_reference_peaks_overlapped_by_a": 0.5557,
+      "n_reference_peaks_overlapped_by_b": 0.5956,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": false
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_more_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_fewer_peaks": {
+     "guess": "A",
+     "correct": false
+    },
+    "set_with_wider_peaks": {
+     "guess": "A",
+     "correct": false
+    },
+    "set_with_narrower_peaks": {
+     "guess": "B",
+     "correct": true
+    }
+   }
+  },
+  {
+   "instance": "pair_07",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 9688,
+    "n_peaks_b": 15458,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 6773,
+    "n_b_peaks_overlapping_reference": 9548,
+    "n_reference_peaks_overlapped_by_a": 6310,
+    "n_reference_peaks_overlapped_by_b": 12848,
+    "answer": "neither"
+   },
+   "derived": {
+    "precision_a": "6,773 of 9,688 (69.9112%)",
+    "precision_b": "9,548 of 15,458 (61.7674%)",
+    "recovered_by_a": "6,310 of 51,176 (12.3300%)",
+    "recovered_by_b": "12,848 of 51,176 (25.1055%)",
+    "a_meets_bar": false,
+    "b_meets_bar": false
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 9688,
+     "n_peaks_b": 15458,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 6773,
+     "n_b_peaks_overlapping_reference": 9548,
+     "n_reference_peaks_overlapped_by_a": 6310,
+     "n_reference_peaks_overlapped_by_b": 12848,
+     "answer": "neither"
+    },
+    "sqlite": {
+     "n_peaks_a": 9688,
+     "n_peaks_b": 15458,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 6773,
+     "n_b_peaks_overlapping_reference": 9548,
+     "n_reference_peaks_overlapped_by_a": 6310,
+     "n_reference_peaks_overlapped_by_b": 12848,
+     "answer": "neither"
+    },
+    "overlapping_pairs": {
+     "a": 7276,
+     "b": 13342
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 6773,
+      "n_b_peaks_overlapping_reference": 9548,
+      "n_reference_peaks_overlapped_by_a": 6310,
+      "n_reference_peaks_overlapped_by_b": 12848,
+      "answer": "neither"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 7276,
+      "n_b_peaks_overlapping_reference": 13342,
+      "n_reference_peaks_overlapped_by_a": 7276,
+      "n_reference_peaks_overlapped_by_b": 13342,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 6310,
+      "n_b_peaks_overlapping_reference": 12848,
+      "n_reference_peaks_overlapped_by_a": 6773,
+      "n_reference_peaks_overlapped_by_b": 9548,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 7267,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 11594,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 6773,
+      "n_b_peaks_overlapping_reference": 9548,
+      "n_reference_peaks_overlapped_by_a": 6310,
+      "n_reference_peaks_overlapped_by_b": 12848,
+      "answer": "neither"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 6773,
+      "n_b_peaks_overlapping_reference": 9548,
+      "n_reference_peaks_overlapped_by_a": 6310,
+      "n_reference_peaks_overlapped_by_b": 12848,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 6773,
+      "n_b_peaks_overlapping_reference": 9548,
+      "n_reference_peaks_overlapped_by_a": 6310,
+      "n_reference_peaks_overlapped_by_b": 12848,
+      "answer": "neither"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 6773,
+      "n_b_peaks_overlapping_reference": 9548,
+      "n_reference_peaks_overlapped_by_a": 6310,
+      "n_reference_peaks_overlapped_by_b": 12848,
+      "answer": "neither"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 6775,
+      "n_b_peaks_overlapping_reference": 9548,
+      "n_reference_peaks_overlapped_by_a": 6315,
+      "n_reference_peaks_overlapped_by_b": 12854,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 9688,
+      "n_peaks_b": 15458,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.6991,
+      "n_b_peaks_overlapping_reference": 0.6177,
+      "n_reference_peaks_overlapped_by_a": 0.1233,
+      "n_reference_peaks_overlapped_by_b": 0.2511,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": false
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_more_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_fewer_peaks": {
+     "guess": "A",
+     "correct": false
+    },
+    "set_with_wider_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_narrower_peaks": {
+     "guess": "A",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "pair_08",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 12657,
+    "n_peaks_b": 24076,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 11356,
+    "n_b_peaks_overlapping_reference": 18960,
+    "n_reference_peaks_overlapped_by_a": 23473,
+    "n_reference_peaks_overlapped_by_b": 22517,
+    "answer": "A"
+   },
+   "derived": {
+    "precision_a": "11,356 of 12,657 (89.7211%)",
+    "precision_b": "18,960 of 24,076 (78.7506%)",
+    "recovered_by_a": "23,473 of 51,176 (45.8672%)",
+    "recovered_by_b": "22,517 of 51,176 (43.9991%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 12657,
+     "n_peaks_b": 24076,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 11356,
+     "n_b_peaks_overlapping_reference": 18960,
+     "n_reference_peaks_overlapped_by_a": 23473,
+     "n_reference_peaks_overlapped_by_b": 22517,
+     "answer": "A"
+    },
+    "sqlite": {
+     "n_peaks_a": 12657,
+     "n_peaks_b": 24076,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 11356,
+     "n_b_peaks_overlapping_reference": 18960,
+     "n_reference_peaks_overlapped_by_a": 23473,
+     "n_reference_peaks_overlapped_by_b": 22517,
+     "answer": "A"
+    },
+    "overlapping_pairs": {
+     "a": 23505,
+     "b": 24831
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11356,
+      "n_b_peaks_overlapping_reference": 18960,
+      "n_reference_peaks_overlapped_by_a": 23473,
+      "n_reference_peaks_overlapped_by_b": 22517,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 23505,
+      "n_b_peaks_overlapping_reference": 24831,
+      "n_reference_peaks_overlapped_by_a": 23505,
+      "n_reference_peaks_overlapped_by_b": 24831,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 23473,
+      "n_b_peaks_overlapping_reference": 22517,
+      "n_reference_peaks_overlapped_by_a": 11356,
+      "n_reference_peaks_overlapped_by_b": 18960,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 9493,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 18058,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11356,
+      "n_b_peaks_overlapping_reference": 18960,
+      "n_reference_peaks_overlapped_by_a": 23473,
+      "n_reference_peaks_overlapped_by_b": 22517,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11356,
+      "n_b_peaks_overlapping_reference": 18960,
+      "n_reference_peaks_overlapped_by_a": 23473,
+      "n_reference_peaks_overlapped_by_b": 22517,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11356,
+      "n_b_peaks_overlapping_reference": 18960,
+      "n_reference_peaks_overlapped_by_a": 23473,
+      "n_reference_peaks_overlapped_by_b": 22517,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11356,
+      "n_b_peaks_overlapping_reference": 18960,
+      "n_reference_peaks_overlapped_by_a": 23473,
+      "n_reference_peaks_overlapped_by_b": 22517,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 11356,
+      "n_b_peaks_overlapping_reference": 18962,
+      "n_reference_peaks_overlapped_by_a": 23481,
+      "n_reference_peaks_overlapped_by_b": 22523,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 12657,
+      "n_peaks_b": 24076,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.8972,
+      "n_b_peaks_overlapping_reference": 0.7875,
+      "n_reference_peaks_overlapped_by_a": 0.4587,
+      "n_reference_peaks_overlapped_by_b": 0.44,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": true
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_more_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_fewer_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_wider_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "B",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "pair_09",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 2497,
+    "n_peaks_b": 1762,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 1927,
+    "n_b_peaks_overlapping_reference": 1113,
+    "n_reference_peaks_overlapped_by_a": 2356,
+    "n_reference_peaks_overlapped_by_b": 1135,
+    "answer": "A"
+   },
+   "derived": {
+    "precision_a": "1,927 of 2,497 (77.1726%)",
+    "precision_b": "1,113 of 1,762 (63.1669%)",
+    "recovered_by_a": "2,356 of 51,176 (4.6037%)",
+    "recovered_by_b": "1,135 of 51,176 (2.2178%)",
+    "a_meets_bar": true,
+    "b_meets_bar": false
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 2497,
+     "n_peaks_b": 1762,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 1927,
+     "n_b_peaks_overlapping_reference": 1113,
+     "n_reference_peaks_overlapped_by_a": 2356,
+     "n_reference_peaks_overlapped_by_b": 1135,
+     "answer": "A"
+    },
+    "sqlite": {
+     "n_peaks_a": 2497,
+     "n_peaks_b": 1762,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 1927,
+     "n_b_peaks_overlapping_reference": 1113,
+     "n_reference_peaks_overlapped_by_a": 2356,
+     "n_reference_peaks_overlapped_by_b": 1135,
+     "answer": "A"
+    },
+    "overlapping_pairs": {
+     "a": 2426,
+     "b": 1191
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 1927,
+      "n_b_peaks_overlapping_reference": 1113,
+      "n_reference_peaks_overlapped_by_a": 2356,
+      "n_reference_peaks_overlapped_by_b": 1135,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 2426,
+      "n_b_peaks_overlapping_reference": 1191,
+      "n_reference_peaks_overlapped_by_a": 2426,
+      "n_reference_peaks_overlapped_by_b": 1191,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 2356,
+      "n_b_peaks_overlapping_reference": 1135,
+      "n_reference_peaks_overlapped_by_a": 1927,
+      "n_reference_peaks_overlapped_by_b": 1113,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 1873,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 1322,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 1927,
+      "n_b_peaks_overlapping_reference": 1113,
+      "n_reference_peaks_overlapped_by_a": 2356,
+      "n_reference_peaks_overlapped_by_b": 1135,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 1927,
+      "n_b_peaks_overlapping_reference": 1113,
+      "n_reference_peaks_overlapped_by_a": 2356,
+      "n_reference_peaks_overlapped_by_b": 1135,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 1927,
+      "n_b_peaks_overlapping_reference": 1113,
+      "n_reference_peaks_overlapped_by_a": 2356,
+      "n_reference_peaks_overlapped_by_b": 1135,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 1927,
+      "n_b_peaks_overlapping_reference": 1113,
+      "n_reference_peaks_overlapped_by_a": 2356,
+      "n_reference_peaks_overlapped_by_b": 1135,
+      "answer": "A"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 1927,
+      "n_b_peaks_overlapping_reference": 1113,
+      "n_reference_peaks_overlapped_by_a": 2361,
+      "n_reference_peaks_overlapped_by_b": 1136,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 2497,
+      "n_peaks_b": 1762,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.7717,
+      "n_b_peaks_overlapping_reference": 0.6317,
+      "n_reference_peaks_overlapped_by_a": 0.046,
+      "n_reference_peaks_overlapped_by_b": 0.0222,
+      "answer": "A"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": true
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_more_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_fewer_peaks": {
+     "guess": "B",
+     "correct": false
+    },
+    "set_with_wider_peaks": {
+     "guess": "A",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "B",
+     "correct": false
+    }
+   }
+  },
+  {
+   "instance": "pair_10",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way",
+   "key": {
+    "n_peaks_a": 6717,
+    "n_peaks_b": 7065,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 5974,
+    "n_b_peaks_overlapping_reference": 6553,
+    "n_reference_peaks_overlapped_by_a": 5924,
+    "n_reference_peaks_overlapped_by_b": 9280,
+    "answer": "B"
+   },
+   "derived": {
+    "precision_a": "5,974 of 6,717 (88.9385%)",
+    "precision_b": "6,553 of 7,065 (92.7530%)",
+    "recovered_by_a": "5,924 of 51,176 (11.5757%)",
+    "recovered_by_b": "9,280 of 51,176 (18.1335%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   },
+   "recomputation": {
+    "reference_solution": {
+     "n_peaks_a": 6717,
+     "n_peaks_b": 7065,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 5974,
+     "n_b_peaks_overlapping_reference": 6553,
+     "n_reference_peaks_overlapped_by_a": 5924,
+     "n_reference_peaks_overlapped_by_b": 9280,
+     "answer": "B"
+    },
+    "sqlite": {
+     "n_peaks_a": 6717,
+     "n_peaks_b": 7065,
+     "n_reference_peaks": 51176,
+     "n_a_peaks_overlapping_reference": 5974,
+     "n_b_peaks_overlapping_reference": 6553,
+     "n_reference_peaks_overlapped_by_a": 5924,
+     "n_reference_peaks_overlapped_by_b": 9280,
+     "answer": "B"
+    },
+    "overlapping_pairs": {
+     "a": 6749,
+     "b": 9549
+    },
+    "agree": true
+   },
+   "both_recomputations_equal_the_key": true,
+   "replays": [
+    {
+     "replay": "correct",
+     "kind": "correct",
+     "says": "The reference solution: unique peaks in each direction, then the rule.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 5974,
+      "n_b_peaks_overlapping_reference": 6553,
+      "n_reference_peaks_overlapped_by_a": 5924,
+      "n_reference_peaks_overlapped_by_b": 9280,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "overlapping_pairs",
+     "kind": "wrong_counts",
+     "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 6749,
+      "n_b_peaks_overlapping_reference": 9549,
+      "n_reference_peaks_overlapped_by_a": 6749,
+      "n_reference_peaks_overlapped_by_b": 9549,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_directions",
+     "kind": "wrong_counts",
+     "says": "Reports each directional count under the other direction's name.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 5924,
+      "n_b_peaks_overlapping_reference": 9280,
+      "n_reference_peaks_overlapped_by_a": 5974,
+      "n_reference_peaks_overlapped_by_b": 6553,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "paper_recall_guess",
+     "kind": "wrong_counts",
+     "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 5038,
+      "n_reference_peaks_overlapped_by_a": 27635,
+      "n_b_peaks_overlapping_reference": 5299,
+      "n_reference_peaks_overlapped_by_b": 27635,
+      "answer": "tie"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_a_peaks_overlapping_reference",
+      "n_b_peaks_overlapping_reference",
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": false,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "swapped_denominators",
+     "kind": "wrong_logic",
+     "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 5974,
+      "n_b_peaks_overlapping_reference": 6553,
+      "n_reference_peaks_overlapped_by_a": 5924,
+      "n_reference_peaks_overlapped_by_b": 9280,
+      "answer": "neither"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": false
+    },
+    {
+     "replay": "ignore_precision_bar",
+     "kind": "wrong_logic",
+     "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 5974,
+      "n_b_peaks_overlapping_reference": 6553,
+      "n_reference_peaks_overlapped_by_a": 5924,
+      "n_reference_peaks_overlapped_by_b": 9280,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "at_least_75",
+     "kind": "wrong_logic",
+     "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 5974,
+      "n_b_peaks_overlapping_reference": 6553,
+      "n_reference_peaks_overlapped_by_a": 5924,
+      "n_reference_peaks_overlapped_by_b": 9280,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "rounded_percent",
+     "kind": "wrong_logic",
+     "says": "Rounds precision to a whole percent before comparing it with 75.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 5974,
+      "n_b_peaks_overlapping_reference": 6553,
+      "n_reference_peaks_overlapped_by_a": 5924,
+      "n_reference_peaks_overlapped_by_b": 9280,
+      "answer": "B"
+     },
+     "passed": true,
+     "schema_errors": [],
+     "wrong_fields": [],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "touching_counts_as_overlap",
+     "kind": "convention",
+     "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 5974,
+      "n_b_peaks_overlapping_reference": 6553,
+      "n_reference_peaks_overlapped_by_a": 5928,
+      "n_reference_peaks_overlapped_by_b": 9285,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [],
+     "wrong_fields": [
+      "n_reference_peaks_overlapped_by_a",
+      "n_reference_peaks_overlapped_by_b"
+     ],
+     "choice_correct": true,
+     "choice_follows_from_counts": true
+    },
+    {
+     "replay": "fractions_instead_of_counts",
+     "kind": "malformed",
+     "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+     "answer": {
+      "n_peaks_a": 6717,
+      "n_peaks_b": 7065,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 0.8894,
+      "n_b_peaks_overlapping_reference": 0.9275,
+      "n_reference_peaks_overlapped_by_a": 0.1158,
+      "n_reference_peaks_overlapped_by_b": 0.1813,
+      "answer": "B"
+     },
+     "passed": false,
+     "schema_errors": [
+      "n_a_peaks_overlapping_reference: must be a whole number",
+      "n_b_peaks_overlapping_reference: must be a whole number",
+      "n_reference_peaks_overlapped_by_a: must be a whole number",
+      "n_reference_peaks_overlapped_by_b: must be a whole number"
+     ],
+     "wrong_fields": [],
+     "choice_correct": false,
+     "choice_follows_from_counts": null
+    }
+   ],
+   "choice_only_guesses": {
+    "always_A": {
+     "guess": "A",
+     "correct": false
+    },
+    "always_B": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_more_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_fewer_peaks": {
+     "guess": "A",
+     "correct": false
+    },
+    "set_with_wider_peaks": {
+     "guess": "B",
+     "correct": true
+    },
+    "set_with_narrower_peaks": {
+     "guess": "A",
+     "correct": false
+    }
+   }
+  }
+ ],
+ "paper_notebook_check": {
+  "MACS2": {
+   "peaks_after_filter": {
+    "paper_notebook": 19672,
+    "recomputed": 19672
+   },
+   "peaks_overlapping_encode": {
+    "paper_notebook": 16540,
+    "recomputed": 16540
+   },
+   "encode_peaks_recovered": {
+    "paper_notebook": 17365,
+    "recomputed": 17365
+   },
+   "blacklisted_peaks_in_source": {
+    "paper_notebook": 1548,
+    "recomputed": 1548
+   },
+   "percent_of_peaks_in_encode": "84.0788939",
+   "percent_of_encode_recovered": "33.931921"
+  },
+  "SEACR": {
+   "peaks_after_filter": {
+    "paper_notebook": 11094,
+    "recomputed": 11094
+   },
+   "peaks_overlapping_encode": {
+    "paper_notebook": 10243,
+    "recomputed": 10243
+   },
+   "encode_peaks_recovered": {
+    "paper_notebook": 19190,
+    "recomputed": 19190
+   },
+   "blacklisted_peaks_in_source": {
+    "paper_notebook": 789,
+    "recomputed": 789
+   },
+   "percent_of_peaks_in_encode": "92.3291869",
+   "percent_of_encode_recovered": "37.498046"
+  }
+ },
+ "private_labels_for_the_primary": {
+  "A": "SEACR",
+  "B": "MACS2"
+ },
+ "label_swap": {
+  "primary_choice": "A",
+  "twin_choice": "B",
+  "twin_solved_correctly": true,
+  "primary_answer_graded_against_twin_key": false
+ },
+ "boundary": {
+  "built_from": "pair_04",
+  "exactly_75": {
+   "key": {
+    "n_peaks_a": 27692,
+    "n_peaks_b": 10533,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 20769,
+    "n_b_peaks_overlapping_reference": 10011,
+    "n_reference_peaks_overlapped_by_a": 28899,
+    "n_reference_peaks_overlapped_by_b": 24351,
+    "answer": "B"
+   },
+   "derived": {
+    "precision_a": "20,769 of 27,692 (75.0000%)",
+    "precision_b": "10,011 of 10,533 (95.0441%)",
+    "recovered_by_a": "28,899 of 51,176 (56.4698%)",
+    "recovered_by_b": "24,351 of 51,176 (47.5829%)",
+    "a_meets_bar": false,
+    "b_meets_bar": true
+   }
+  },
+  "one_peak_above": {
+   "key": {
+    "n_peaks_a": 27691,
+    "n_peaks_b": 10533,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 20769,
+    "n_b_peaks_overlapping_reference": 10011,
+    "n_reference_peaks_overlapped_by_a": 28899,
+    "n_reference_peaks_overlapped_by_b": 24351,
+    "answer": "A"
+   },
+   "derived": {
+    "precision_a": "20,769 of 27,691 (75.0027%)",
+    "precision_b": "10,011 of 10,533 (95.0441%)",
+    "recovered_by_a": "28,899 of 51,176 (56.4698%)",
+    "recovered_by_b": "24,351 of 51,176 (47.5829%)",
+    "a_meets_bar": true,
+    "b_meets_bar": true
+   }
+  },
+  "precision_exact_percent": "75.0000",
+  "precision_above_percent": "75.0027",
+  "the_two_instances_differ_by_rows": 1,
+  "choice_flips": true
+ },
+ "survival": {
+  "correct": {
+   "kind": "correct",
+   "passes_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ],
+   "fails_on": []
+  },
+  "overlapping_pairs": {
+   "kind": "wrong_counts",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "swapped_directions": {
+   "kind": "wrong_counts",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "paper_recall_guess": {
+   "kind": "wrong_counts",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "swapped_denominators": {
+   "kind": "wrong_logic",
+   "passes_on": [
+    "pair_07"
+   ],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "ignore_precision_bar": {
+   "kind": "wrong_logic",
+   "passes_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_one_peak_above_75",
+    "pair_03",
+    "pair_05",
+    "pair_06",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ],
+   "fails_on": [
+    "boundary_exactly_75",
+    "pair_01",
+    "pair_02",
+    "pair_04",
+    "pair_07"
+   ]
+  },
+  "at_least_75": {
+   "kind": "wrong_logic",
+   "passes_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ],
+   "fails_on": [
+    "boundary_exactly_75"
+   ]
+  },
+  "rounded_percent": {
+   "kind": "wrong_logic",
+   "passes_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ],
+   "fails_on": [
+    "boundary_one_peak_above_75"
+   ]
+  },
+  "touching_counts_as_overlap": {
+   "kind": "convention",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "fractions_instead_of_counts": {
+   "kind": "malformed",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  }
+ },
+ "choice_only": {
+  "note": "what would pass if only the final choice were graded, on the real pairs",
+  "answers": {
+   "A": 5,
+   "B": 5,
+   "tie": 0,
+   "neither": 1
+  },
+  "guesses": {
+   "always_A": 5,
+   "always_B": 5,
+   "set_with_more_peaks": 4,
+   "set_with_fewer_peaks": 6,
+   "set_with_wider_peaks": 8,
+   "set_with_narrower_peaks": 2
+  },
+  "wrong_logic": {
+   "swapped_denominators": 1,
+   "ignore_precision_bar": 7,
+   "at_least_75": 11,
+   "rounded_percent": 11
+  },
+  "n_real_pairs": 11
+ },
+ "blinding": {
+  "pairs": 11,
+  "pairs_where_the_wider_set_is_the_same_caller": 11,
+  "rule_selects_by_caller": {
+   "SEACR": 8,
+   "MACS2": 2,
+   "neither": 1
+  }
+ },
+ "agent_runs": [
+  {
+   "run_id": "run_01",
+   "model": "Claude Sonnet 5.5",
+   "passed": true,
+   "recorded_verdict_reproduces": true,
+   "tool_calls": 4,
+   "calls_naming_a_path_outside_the_workspace": 0
+  }
+ ],
+ "verdicts": {
+  "inputs_verified": true,
+  "two_recomputations_equal_the_key_on_every_instance": true,
+  "correct_solution_passes_everywhere": true,
+  "wrong_counts_and_malformed_fail_everywhere": true,
+  "every_logic_shortcut_is_caught_by_at_least_one_instance": true,
+  "label_swap_flips_the_choice": true,
+  "one_peak_flips_the_boundary_choice": true,
+  "recorded_agent_verdicts_reproduce": true,
+  "key_equals_the_paper_notebook": true
+ },
+ "survives_on_the_primary": [
+  "ignore_precision_bar",
+  "at_least_75",
+  "rounded_percent"
+ ]
+}

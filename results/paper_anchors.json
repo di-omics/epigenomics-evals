@@ -1,0 +1,38 @@
+[
+ {
+  "statement": "Average ENCODE recall of 54% across CUT&Tag experiments (sd 4.99)",
+  "where": "Abstract; Results, Fig. 5b",
+  "recomputed": "53.2% (sd 6.09) over the 6 H3K27ac benchmarking libraries x 2 peak callers in GEO",
+  "value": 0.5316424365588035
+ },
+ {
+  "statement": "Antibody ab177178 did not reach 75% precision with MACS2",
+  "where": "Results, Fig. 4a",
+  "recomputed": "MACS2 precision 63.1% and 64.6% for the 2 ab177178 libraries",
+  "value": 0.6457656221254676
+ },
+ {
+  "statement": "Nearly 70% of ENCODE H3K27ac peaks overlapped with ATAC-seq peaks",
+  "where": "Results, Fig. 3c",
+  "recomputed": "69.4%",
+  "value": 0.6938799437236205
+ },
+ {
+  "statement": "An average of 1.35 to 1.68 MACS2 peaks overlapping a SEACR peak per sample",
+  "where": "Results, peak calling",
+  "recomputed": "1.41 for the library used in the tasks",
+  "value": 1.4128658304827062
+ },
+ {
+  "statement": "Duplication rates between 55.49% and 98.45% across samples",
+  "where": "Results; Supplementary Table 2",
+  "recomputed": "96.36% for the library used in the tasks",
+  "value": 0.963575
+ },
+ {
+  "statement": "About 8% of H3K27me3 CUT&Tag reads fell into ATAC peaks (8.29%), 5.88% after removing fragments under 100 bp",
+  "where": "Results, Fig. 3c",
+  "recomputed": "7.84% and 6.54% on the first-round H3K27me3 library in the code repository (the paper's figures are for 2 later libraries)",
+  "value": 0.0784389033325455
+ }
+]

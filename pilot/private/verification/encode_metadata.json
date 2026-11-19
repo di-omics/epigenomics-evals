@@ -1,0 +1,39 @@
+{
+ "fetched": "2026-11-18",
+ "source": "https://www.encodeproject.org (REST API, frame=object)",
+ "file": {
+  "accession": "ENCFF044JNJ",
+  "status": "released",
+  "file_format": "bed",
+  "file_format_type": "narrowPeak",
+  "output_type": "replicated peaks",
+  "assembly": "hg19",
+  "dataset": "/experiments/ENCSR000AKP/",
+  "biological_replicates": [
+   1,
+   2
+  ],
+  "file_size": 1272456,
+  "md5sum": "78c3b3b8e6cde054831acaeb5cdffe5b",
+  "content_md5sum": "17cc6430255e2c823da61e35ff72f28e",
+  "date_created": "2017-04-05T03:33:14.697319+00:00",
+  "lab": "/labs/encode-processing-pipeline/",
+  "analysis_step_version": "/analysis-step-versions/histone-overlap-peaks-step-v-1-1/",
+  "derived_from": [
+   "/files/ENCFF578UBP/",
+   "/files/ENCFF702CFZ/",
+   "/files/ENCFF931VAQ/"
+  ],
+  "href": "/files/ENCFF044JNJ/@@download/ENCFF044JNJ.bed.gz"
+ },
+ "experiment": {
+  "accession": "ENCSR000AKP",
+  "status": "released",
+  "assay_title": "Histone ChIP-seq",
+  "biosample_summary": "Homo sapiens K562",
+  "target": "/targets/H3K27ac-human/",
+  "lab": "/labs/bradley-bernstein/",
+  "date_released": "2011-02-10",
+  "description": "H3K27ac ChIP-seq on human K562"
+ }
+}

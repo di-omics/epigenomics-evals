@@ -1,0 +1,58 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: python -m pip install -e ".[dev]"
+      - name: Tests that need no downloaded data
+        run: python -m pytest -q -rs
+      - name: ASCII only, no em dashes
+        run: |
+          ! git ls-files -z | xargs -0 file --mime | grep -v 'charset=binary' | cut -d: -f1 | xargs grep -nP '[^\x00-\x7F]'
+
+  pilot-replay:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.14"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Replay the pilot with the standard library only
+        run: python pilot/replay.py
+
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Install with the published Latch grader
+        run: python -m pip install -e ".[grade,dev]"
+      - name: Fetch the public data and verify every checksum
+        run: python scripts/fetch_data.py
+      - name: Rebuild every answer key, table, figure and document
+        run: |
+          python -m epigenomics_evals.build
+          python pilot/build_pilot.py
+          python pilot/replay.py --write
+      - name: The rebuild changed nothing
+        run: git diff --exit-code -- . ':!pilot/private/siblings'
+      - name: Full test suite, with the data and the Latch grader
+        run: python -m pytest -q -rs

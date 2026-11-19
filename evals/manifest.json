@@ -1,0 +1,28 @@
+{
+ "evals": [
+  {
+   "id": "ct01_encode_capture",
+   "path": "evals/ct01_encode_capture/eval.json"
+  },
+  {
+   "id": "ct02_strong_vs_weak_recovery",
+   "path": "evals/ct02_strong_vs_weak_recovery/eval.json"
+  },
+  {
+   "id": "ct03_duplicates_decision",
+   "path": "evals/ct03_duplicates_decision/eval.json"
+  },
+  {
+   "id": "ct04_antibody_panel_reference",
+   "path": "evals/ct04_antibody_panel_reference/eval.json"
+  },
+  {
+   "id": "ct05_promoter_denominator",
+   "path": "evals/ct05_promoter_denominator/eval.json"
+  },
+  {
+   "id": "ct06_open_chromatin_control",
+   "path": "evals/ct06_open_chromatin_control/eval.json"
+  }
+ ]
+}

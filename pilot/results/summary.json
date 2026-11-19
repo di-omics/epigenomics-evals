@@ -1,0 +1,539 @@
+{
+ "task_id": "fig4a_peak_set_choice",
+ "status": "independent prototype",
+ "verdicts": {
+  "inputs_verified": true,
+  "two_recomputations_equal_the_key_on_every_instance": true,
+  "correct_solution_passes_everywhere": true,
+  "wrong_counts_and_malformed_fail_everywhere": true,
+  "every_logic_shortcut_is_caught_by_at_least_one_instance": true,
+  "label_swap_flips_the_choice": true,
+  "one_peak_flips_the_boundary_choice": true,
+  "recorded_agent_verdicts_reproduce": true,
+  "key_equals_the_paper_notebook": true
+ },
+ "inputs": [
+  {
+   "check": "workspace holds only the prompt, the manifest, the schema and 3 inputs",
+   "ok": true,
+   "detail": "answer_schema.json, inputs/peaks_A.bed, inputs/peaks_B.bed, inputs/reference_peaks.bed, manifest.json, task.md"
+  },
+  {
+   "check": "every input matches its SHA-256 and size in the manifest",
+   "ok": true,
+   "detail": "3 files checked"
+  },
+  {
+   "check": "no caller, antibody, sample, accession or paper name anywhere in the workspace",
+   "ok": true,
+   "detail": "0 matches"
+  },
+  {
+   "check": "peaks_A.bed: 3 columns, sorted, no duplicate rows, no zero-length interval",
+   "ok": true,
+   "detail": "11,094 rows"
+  },
+  {
+   "check": "peaks_A.bed: every interval fits hg19",
+   "ok": true,
+   "detail": "0 end beyond an hg19 chromosome end; 174 end beyond the hg38 end of the same chromosome, so these cannot be hg38 coordinates"
+  },
+  {
+   "check": "peaks_B.bed: 3 columns, sorted, no duplicate rows, no zero-length interval",
+   "ok": true,
+   "detail": "19,672 rows"
+  },
+  {
+   "check": "peaks_B.bed: every interval fits hg19",
+   "ok": true,
+   "detail": "0 end beyond an hg19 chromosome end; 273 end beyond the hg38 end of the same chromosome, so these cannot be hg38 coordinates"
+  },
+  {
+   "check": "reference_peaks.bed: 3 columns, sorted, no duplicate rows, no zero-length interval",
+   "ok": true,
+   "detail": "51,176 rows"
+  },
+  {
+   "check": "reference_peaks.bed: every interval fits hg19",
+   "ok": true,
+   "detail": "0 end beyond an hg19 chromosome end; 579 end beyond the hg38 end of the same chromosome, so these cannot be hg38 coordinates"
+  },
+  {
+   "check": "peaks_A.bed: chr1-22, X, Y only",
+   "ok": true,
+   "detail": "24 chromosomes"
+  },
+  {
+   "check": "peaks_A.bed: no peak overlaps the hg19 blacklist v2",
+   "ok": true,
+   "detail": "0 of 11,094 peaks overlap it; counted when the pilot was built and recounted by this command whenever the blacklist file has been fetched"
+  },
+  {
+   "check": "peaks_B.bed: chr1-22, X, Y only",
+   "ok": true,
+   "detail": "24 chromosomes"
+  },
+  {
+   "check": "peaks_B.bed: no peak overlaps the hg19 blacklist v2",
+   "ok": true,
+   "detail": "0 of 19,672 peaks overlap it; counted when the pilot was built and recounted by this command whenever the blacklist file has been fetched"
+  }
+ ],
+ "recomputation": {
+  "fields": 8,
+  "fields_equal_between_the_two_recomputations": 8,
+  "fields_equal_to_the_key": 8,
+  "paper_notebook_numbers": 8,
+  "paper_notebook_numbers_equal": 8
+ },
+ "primary_replays": [
+  {
+   "replay": "correct",
+   "kind": "correct",
+   "says": "The reference solution: unique peaks in each direction, then the rule.",
+   "passed": true,
+   "counts_wrong": 0,
+   "choice_correct": true,
+   "valid_answer": true
+  },
+  {
+   "replay": "overlapping_pairs",
+   "kind": "wrong_counts",
+   "says": "Counts overlapping (peak, reference peak) pairs, as an intersect piped to a line count does.",
+   "passed": false,
+   "counts_wrong": 4,
+   "choice_correct": false,
+   "valid_answer": true
+  },
+  {
+   "replay": "swapped_directions",
+   "kind": "wrong_counts",
+   "says": "Reports each directional count under the other direction's name.",
+   "passed": false,
+   "counts_wrong": 4,
+   "choice_correct": false,
+   "valid_answer": true
+  },
+  {
+   "replay": "paper_recall_guess",
+   "kind": "wrong_counts",
+   "says": "Computes no overlaps. Assumes both sets recover the paper-wide 54% and just clear the bar.",
+   "passed": false,
+   "counts_wrong": 4,
+   "choice_correct": false,
+   "valid_answer": true
+  },
+  {
+   "replay": "swapped_denominators",
+   "kind": "wrong_logic",
+   "says": "Divides each count by the other file's size: precision over the reference, recovery over the set.",
+   "passed": false,
+   "counts_wrong": 0,
+   "choice_correct": false,
+   "valid_answer": true
+  },
+  {
+   "replay": "ignore_precision_bar",
+   "kind": "wrong_logic",
+   "says": "Takes whichever set recovers more reference peaks and never checks the 75% requirement.",
+   "passed": true,
+   "counts_wrong": 0,
+   "choice_correct": true,
+   "valid_answer": true
+  },
+  {
+   "replay": "at_least_75",
+   "kind": "wrong_logic",
+   "says": "Reads the requirement as 75% or more instead of strictly more than 75%.",
+   "passed": true,
+   "counts_wrong": 0,
+   "choice_correct": true,
+   "valid_answer": true
+  },
+  {
+   "replay": "rounded_percent",
+   "kind": "wrong_logic",
+   "says": "Rounds precision to a whole percent before comparing it with 75.",
+   "passed": true,
+   "counts_wrong": 0,
+   "choice_correct": true,
+   "valid_answer": true
+  },
+  {
+   "replay": "touching_counts_as_overlap",
+   "kind": "convention",
+   "says": "Treats coordinates as 1-based closed, so intervals that only touch count as overlapping.",
+   "passed": false,
+   "counts_wrong": 3,
+   "choice_correct": true,
+   "valid_answer": true
+  },
+  {
+   "replay": "fractions_instead_of_counts",
+   "kind": "malformed",
+   "says": "Reports precision and recovery as fractions where the schema asks for counts.",
+   "passed": false,
+   "counts_wrong": 0,
+   "choice_correct": false,
+   "valid_answer": false
+  }
+ ],
+ "survives_on_the_primary": [
+  "ignore_precision_bar",
+  "at_least_75",
+  "rounded_percent"
+ ],
+ "label_swap": {
+  "choice_changes": true,
+  "primary_answer_fails_on_the_twin": true
+ },
+ "boundary": {
+  "what": "a real pair whose higher-recovery set starts at 74.49% precision, with 189 of its peaks removed so that it sits exactly on 75%",
+  "precision_exact_percent": "75.0000",
+  "precision_above_percent": "75.0027",
+  "differ_by_rows": 1,
+  "choice_flips": true
+ },
+ "tie": {
+  "what": "both labels hold the same peak set, so both qualify and recover the same reference peaks",
+  "key_is_tie": true
+ },
+ "instances": [
+  {
+   "instance": "primary",
+   "kind": "real",
+   "what": "the pilot instance an agent receives"
+  },
+  {
+   "instance": "label_swap",
+   "kind": "built",
+   "what": "the primary instance with the 2 labels exchanged"
+  },
+  {
+   "instance": "tie_identical_sets",
+   "kind": "built",
+   "what": "both labels hold the same peak set, so both qualify and recover the same reference peaks"
+  },
+  {
+   "instance": "boundary_exactly_75",
+   "kind": "built",
+   "what": "a real pair whose higher-recovery set starts at 74.49% precision, with 189 of its peaks removed so that it sits exactly on 75%"
+  },
+  {
+   "instance": "boundary_one_peak_above_75",
+   "kind": "built",
+   "what": "a real pair whose higher-recovery set starts at 74.49% precision, with 190 of its peaks removed so that it sits one peak past 75%"
+  },
+  {
+   "instance": "pair_01",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  },
+  {
+   "instance": "pair_02",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  },
+  {
+   "instance": "pair_03",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  },
+  {
+   "instance": "pair_04",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  },
+  {
+   "instance": "pair_05",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  },
+  {
+   "instance": "pair_06",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  },
+  {
+   "instance": "pair_07",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  },
+  {
+   "instance": "pair_08",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  },
+  {
+   "instance": "pair_09",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  },
+  {
+   "instance": "pair_10",
+   "kind": "real",
+   "what": "another public pair from the same paper, blinded the same way"
+  }
+ ],
+ "survival": {
+  "correct": {
+   "kind": "correct",
+   "passes_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ],
+   "fails_on": []
+  },
+  "overlapping_pairs": {
+   "kind": "wrong_counts",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "swapped_directions": {
+   "kind": "wrong_counts",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "paper_recall_guess": {
+   "kind": "wrong_counts",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "swapped_denominators": {
+   "kind": "wrong_logic",
+   "passes_on": [
+    "pair_07"
+   ],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "ignore_precision_bar": {
+   "kind": "wrong_logic",
+   "passes_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_one_peak_above_75",
+    "pair_03",
+    "pair_05",
+    "pair_06",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ],
+   "fails_on": [
+    "boundary_exactly_75",
+    "pair_01",
+    "pair_02",
+    "pair_04",
+    "pair_07"
+   ]
+  },
+  "at_least_75": {
+   "kind": "wrong_logic",
+   "passes_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ],
+   "fails_on": [
+    "boundary_exactly_75"
+   ]
+  },
+  "rounded_percent": {
+   "kind": "wrong_logic",
+   "passes_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ],
+   "fails_on": [
+    "boundary_one_peak_above_75"
+   ]
+  },
+  "touching_counts_as_overlap": {
+   "kind": "convention",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  },
+  "fractions_instead_of_counts": {
+   "kind": "malformed",
+   "passes_on": [],
+   "fails_on": [
+    "primary",
+    "label_swap",
+    "tie_identical_sets",
+    "boundary_exactly_75",
+    "boundary_one_peak_above_75",
+    "pair_01",
+    "pair_02",
+    "pair_03",
+    "pair_04",
+    "pair_05",
+    "pair_06",
+    "pair_07",
+    "pair_08",
+    "pair_09",
+    "pair_10"
+   ]
+  }
+ },
+ "real_pairs": {
+  "n": 11,
+  "answers_by_label": {
+   "A": 5,
+   "B": 5,
+   "neither": 1
+  },
+  "answers_by_caller": {
+   "SEACR": 8,
+   "MACS2": 2,
+   "neither": 1
+  },
+  "other_pairs": 10,
+  "other_pairs_where_ignoring_the_bar_is_wrong": 4
+ },
+ "choice_only": {
+  "guesses": {
+   "always_A": 5,
+   "always_B": 5,
+   "set_with_more_peaks": 4,
+   "set_with_fewer_peaks": 6,
+   "set_with_wider_peaks": 8,
+   "set_with_narrower_peaks": 2
+  },
+  "wrong_logic": {
+   "swapped_denominators": 1,
+   "ignore_precision_bar": 7,
+   "at_least_75": 11,
+   "rounded_percent": 11
+  }
+ },
+ "blinding": {
+  "pairs": 11,
+  "pairs_where_the_wider_set_is_the_same_caller": 11
+ },
+ "agent_runs": [
+  {
+   "run_id": "run_01",
+   "model": "Claude Sonnet 5.5",
+   "passed": true,
+   "recorded_verdict_reproduces": true,
+   "tool_calls": 4,
+   "calls_naming_a_path_outside_the_workspace": 0
+  }
+ ]
+}

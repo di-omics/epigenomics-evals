@@ -1,0 +1,32 @@
+{
+ "task_id": "fig4a_peak_set_choice",
+ "status": "independent prototype",
+ "genome_build": "hg19",
+ "coordinates": "0-based start, half-open end",
+ "files": [
+  {
+   "path": "inputs/peaks_A.bed",
+   "role": "candidate peak set A",
+   "format": "BED3 (chromosome, start, end), tab separated, no header",
+   "rows": 11094,
+   "bytes": 264831,
+   "sha256": "f4b403fc5637767b9d0abb195bf5fee8299afe34e9f4acf01256deaae902735c"
+  },
+  {
+   "path": "inputs/peaks_B.bed",
+   "role": "candidate peak set B",
+   "format": "BED3 (chromosome, start, end), tab separated, no header",
+   "rows": 19672,
+   "bytes": 469476,
+   "sha256": "35812ac558bd4d3fc368e15a2582b4881fd53116a60ad74a1e0042c879eeb260"
+  },
+  {
+   "path": "inputs/reference_peaks.bed",
+   "role": "ENCODE H3K27ac ChIP-seq peaks for K562, the reference",
+   "format": "BED3 (chromosome, start, end), tab separated, no header",
+   "rows": 51176,
+   "bytes": 1221228,
+   "sha256": "c659f594bd4361a742942e21b3cf6ad4f1bf1fb064068f7ed07bbf29d991afee"
+  }
+ ]
+}

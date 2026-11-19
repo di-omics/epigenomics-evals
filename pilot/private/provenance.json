@@ -1,0 +1,1096 @@
+{
+ "task_id": "fig4a_peak_set_choice",
+ "status": "independent prototype",
+ "paper": {
+  "doi": "10.1038/s41467-025-58137-2",
+  "figure": "4a",
+  "criterion_in_the_paper": "maximise ENCODE capture while keeping precision above 75%"
+ },
+ "sources": {
+  "code_repository": {
+   "url": "https://github.com/Marzi-lab/CUTnTag-benchmarking-analysis",
+   "commit": "52270f5bdf80fe868b74cc07917840929160eab9",
+   "license": "MIT"
+  },
+  "geo_series": "GSE286492",
+  "reference": {
+   "accession": "ENCFF044JNJ",
+   "experiment": "ENCSR000AKP",
+   "source_path": "demo/resources/ENCODE/peaks/H3K27ac_ENCFF044JNJ.bed.narrowPeak",
+   "md5_of_source_file": "17cc6430255e2c823da61e35ff72f28e",
+   "encode_metadata": {
+    "fetched": "2026-11-18",
+    "source": "https://www.encodeproject.org (REST API, frame=object)",
+    "file": {
+     "accession": "ENCFF044JNJ",
+     "status": "released",
+     "file_format": "bed",
+     "file_format_type": "narrowPeak",
+     "output_type": "replicated peaks",
+     "assembly": "hg19",
+     "dataset": "/experiments/ENCSR000AKP/",
+     "biological_replicates": [
+      1,
+      2
+     ],
+     "file_size": 1272456,
+     "md5sum": "78c3b3b8e6cde054831acaeb5cdffe5b",
+     "content_md5sum": "17cc6430255e2c823da61e35ff72f28e",
+     "date_created": "2017-04-05T03:33:14.697319+00:00",
+     "lab": "/labs/encode-processing-pipeline/",
+     "analysis_step_version": "/analysis-step-versions/histone-overlap-peaks-step-v-1-1/",
+     "derived_from": [
+      "/files/ENCFF578UBP/",
+      "/files/ENCFF702CFZ/",
+      "/files/ENCFF931VAQ/"
+     ],
+     "href": "/files/ENCFF044JNJ/@@download/ENCFF044JNJ.bed.gz"
+    },
+    "experiment": {
+     "accession": "ENCSR000AKP",
+     "status": "released",
+     "assay_title": "Histone ChIP-seq",
+     "biosample_summary": "Homo sapiens K562",
+     "target": "/targets/H3K27ac-human/",
+     "lab": "/labs/bradley-bernstein/",
+     "date_released": "2011-02-10",
+     "description": "H3K27ac ChIP-seq on human K562"
+    }
+   }
+  },
+  "blacklist": {
+   "source_path": "demo/resources/hg19/hg19-blacklist.v2.bed.gz",
+   "sha256_uncompressed": "1f614b9c1c39a0ef8a7a16891dff4171aacdf8fc62835b6546559d4765a27edf",
+   "boyle_lab_sha256_uncompressed": "1f614b9c1c39a0ef8a7a16891dff4171aacdf8fc62835b6546559d4765a27edf"
+  },
+  "git_blob_ids_local": {
+   "demo/peakCalling/all_peaks/Diagenode_C15410196_1_50_MACS2.bed": "9db39e82acd39c0615f912a9ed3d241c66b39bcc",
+   "demo/peakCalling/all_peaks/Diagenode_C15410196_1_50_SEACR.bed": "f1fe2bfa468c3c2b2752e796540150b10ff333fd",
+   "demo/resources/ENCODE/peaks/H3K27ac_ENCFF044JNJ.bed.narrowPeak": "a90f4690bf8a99a5e8bf9ef57ea01a02f1fcbee2",
+   "demo/resources/hg19/hg19-blacklist.v2.bed.gz": "58e600bd547d8cc39a2eecb98a78e8414855f899",
+   "demo/analysis/results/CUTnTag_analysis.html": "9a8a16c2bc4052d58405aef929fd60836bce75e6"
+  },
+  "git_blob_ids_pinned": {
+   "demo/peakCalling/all_peaks/Diagenode_C15410196_1_50_MACS2.bed": "9db39e82acd39c0615f912a9ed3d241c66b39bcc",
+   "demo/peakCalling/all_peaks/Diagenode_C15410196_1_50_SEACR.bed": "f1fe2bfa468c3c2b2752e796540150b10ff333fd",
+   "demo/resources/ENCODE/peaks/H3K27ac_ENCFF044JNJ.bed.narrowPeak": "a90f4690bf8a99a5e8bf9ef57ea01a02f1fcbee2",
+   "demo/resources/hg19/hg19-blacklist.v2.bed.gz": "58e600bd547d8cc39a2eecb98a78e8414855f899",
+   "demo/analysis/results/CUTnTag_analysis.html": "9a8a16c2bc4052d58405aef929fd60836bce75e6"
+  },
+  "same_blob_under_full_name": {
+   "demo/peakCalling/all_peaks/Diagenode_C15410196_1_50_MACS2.bed": "demo/peakCalling/MACS2/Diagenode_C15410196_1_50_rmDup_q1e-5_peaks.narrowPeak",
+   "demo/peakCalling/all_peaks/Diagenode_C15410196_1_50_SEACR.bed": "demo/peakCalling/SEACR/Diagenode_C15410196_1_50_rmDup_seacr_top0.01_peaks.stringent.bed"
+  },
+  "same_bytes_under_full_name": {
+   "demo/peakCalling/all_peaks/Diagenode_C15410196_1_50_MACS2.bed": true,
+   "demo/peakCalling/all_peaks/Diagenode_C15410196_1_50_SEACR.bed": true
+  },
+  "settings_evidence": {
+   "duplicates removed with Picard MarkDuplicates REMOVE_DUPLICATES=true (3_remove_duplicates.sh)": true,
+   "MACS2 invocation with -f BAMPE, q 1e-5, --keep-dup all, --nolambda, --nomodel, written for the rmDup and for the withDup alignments (9_call_peaks_MACS2_H3K27ac.sh; the rmDup variant is the commented one in the committed script)": true,
+   "SEACR 1.3 called at 0.01, non, stringent on the rmDup bedgraph (8_call_peaks_SEACR_H3K27ac.sh)": true
+  },
+  "primary_coordinates_identical_to_geo": {
+   "MACS2": true,
+   "SEACR": true
+  }
+ },
+ "conventions": {
+  "genome_build": "hg19",
+  "coordinates": "BED, 0-based start, half-open end",
+  "overlap_rule": "at least 1 bp shared; each peak counted once per direction",
+  "duplicates": "PCR duplicates removed with Picard MarkDuplicates REMOVE_DUPLICATES=true before peak calling",
+  "candidate_set_filter": "peaks overlapping the hg19 blacklist v2 removed; chr1-22, X, Y kept",
+  "reference_filter": "none: all rows of the ENCODE file are kept, as in the paper's code"
+ },
+ "reference_hygiene": {
+  "rows": 51176,
+  "duplicate_rows": 0,
+  "zero_length": 0,
+  "peaks_overlapping_another_peak_in_the_same_file": 0,
+  "ending_beyond_hg19_chromosome_end": 0,
+  "ending_beyond_hg38_chromosome_end": 579,
+  "outside_chr1_22_X_Y": 0,
+  "peaks_overlapping_blacklist": 487
+ },
+ "primary_library_duplication_rate": 0.963575,
+ "paper_notebook_check": {
+  "MACS2": {
+   "peaks_after_filter": {
+    "paper_notebook": 19672,
+    "recomputed": 19672
+   },
+   "peaks_overlapping_encode": {
+    "paper_notebook": 16540,
+    "recomputed": 16540
+   },
+   "encode_peaks_recovered": {
+    "paper_notebook": 17365,
+    "recomputed": 17365
+   },
+   "blacklisted_peaks_in_source": {
+    "paper_notebook": 1548,
+    "recomputed": 1548
+   },
+   "percent_of_peaks_in_encode": "84.0788939",
+   "percent_of_encode_recovered": "33.931921"
+  },
+  "SEACR": {
+   "peaks_after_filter": {
+    "paper_notebook": 11094,
+    "recomputed": 11094
+   },
+   "peaks_overlapping_encode": {
+    "paper_notebook": 10243,
+    "recomputed": 10243
+   },
+   "encode_peaks_recovered": {
+    "paper_notebook": 19190,
+    "recomputed": 19190
+   },
+   "blacklisted_peaks_in_source": {
+    "paper_notebook": 789,
+    "recomputed": 789
+   },
+   "percent_of_peaks_in_encode": "92.3291869",
+   "percent_of_encode_recovered": "37.498046"
+  }
+ },
+ "instances": [
+  {
+   "instance": "primary",
+   "library": "Diagenode_C15410196_1_50",
+   "antibody": "Diagenode C15410196, 1:50",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728368",
+   "round": "first-round library (15 PCR cycles, SDS extraction), the worked example in the paper's code repository",
+   "labels": {
+    "A": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "Diagenode_C15410196_1_50_SEACR.bed",
+     "sha256_staged": "f4b403fc5637767b9d0abb195bf5fee8299afe34e9f4acf01256deaae902735c"
+    },
+    "B": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "Diagenode_C15410196_1_50_MACS2.bed",
+     "sha256_staged": "35812ac558bd4d3fc368e15a2582b4881fd53116a60ad74a1e0042c879eeb260"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 21487,
+     "overlapping_blacklist": 1548,
+     "outside_chr1_22_X_Y": 267,
+     "rows_staged": 19672
+    },
+    "SEACR": {
+     "rows_in_source": 11993,
+     "overlapping_blacklist": 789,
+     "outside_chr1_22_X_Y": 110,
+     "rows_staged": 11094
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 11094,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 174,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 19672,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 273,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 2256.0,
+    "B": 537.0
+   },
+   "key": {
+    "n_peaks_a": 11094,
+    "n_peaks_b": 19672,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 10243,
+    "n_b_peaks_overlapping_reference": 16540,
+    "n_reference_peaks_overlapped_by_a": 19190,
+    "n_reference_peaks_overlapped_by_b": 17365,
+    "answer": "A"
+   },
+   "overlapping_pairs": {
+    "a": 19273,
+    "b": 20102
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 11094,
+    "n_peaks_b": 19672,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 10243,
+    "n_b_peaks_overlapping_reference": 16541,
+    "n_reference_peaks_overlapped_by_a": 19194,
+    "n_reference_peaks_overlapped_by_b": 17372
+   }
+  },
+  {
+   "instance": "pair_01",
+   "library": "ab177-1",
+   "antibody": "Abcam ab177178",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728355",
+   "round": "benchmarking library",
+   "labels": {
+    "A": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728355_ab177-1_rmDup_individual_seacr_top0.01_peaks.stringent.bed.gz",
+     "sha256_staged": "a05202e04775e5ac2dc0aedb95ad5aad8f401ed4795c7b35a62885ab3482cbeb"
+    },
+    "B": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728355_ab177-1_rmDup_q1e-5_macs2_peaks.bed.gz",
+     "sha256_staged": "3163248d4846f2b4dff2d17c4278c0a91ad52219fb95f7f6a69b7907b3cf1428"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 35143,
+     "overlapping_blacklist": 1429,
+     "outside_chr1_22_X_Y": 246,
+     "rows_staged": 33468
+    },
+    "SEACR": {
+     "rows_in_source": 15520,
+     "overlapping_blacklist": 595,
+     "outside_chr1_22_X_Y": 100,
+     "rows_staged": 14825
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 14825,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 245,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 33468,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 630,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 3761.0,
+    "B": 746.0
+   },
+   "key": {
+    "n_peaks_a": 14825,
+    "n_peaks_b": 33468,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 12494,
+    "n_b_peaks_overlapping_reference": 21108,
+    "n_reference_peaks_overlapped_by_a": 29059,
+    "n_reference_peaks_overlapped_by_b": 29660,
+    "answer": "A"
+   },
+   "overlapping_pairs": {
+    "a": 29066,
+    "b": 31120
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 14825,
+    "n_peaks_b": 33468,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 12494,
+    "n_b_peaks_overlapping_reference": 21111,
+    "n_reference_peaks_overlapped_by_a": 29061,
+    "n_reference_peaks_overlapped_by_b": 29676
+   }
+  },
+  {
+   "instance": "pair_02",
+   "library": "ab177-2",
+   "antibody": "Abcam ab177178",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728356",
+   "round": "benchmarking library",
+   "labels": {
+    "A": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728356_ab177-2_rmDup_q1e-5_macs2_peaks.bed.gz",
+     "sha256_staged": "1e9f03b99b09e64c4413e09951d6a031a57d0c8a05b2f62623232187d471cbb0"
+    },
+    "B": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728356_ab177-2_rmDup_individual_seacr_top0.01_peaks.stringent.bed.gz",
+     "sha256_staged": "115997d089bb972581c0775dba5011932783df8a0c09bbd9564996c45f94f0ed"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 34260,
+     "overlapping_blacklist": 1395,
+     "outside_chr1_22_X_Y": 251,
+     "rows_staged": 32614
+    },
+    "SEACR": {
+     "rows_in_source": 15711,
+     "overlapping_blacklist": 610,
+     "outside_chr1_22_X_Y": 97,
+     "rows_staged": 15004
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 32614,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 613,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 15004,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 250,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 756.0,
+    "B": 3796.0
+   },
+   "key": {
+    "n_peaks_a": 32614,
+    "n_peaks_b": 15004,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 21061,
+    "n_b_peaks_overlapping_reference": 12696,
+    "n_reference_peaks_overlapped_by_a": 29732,
+    "n_reference_peaks_overlapped_by_b": 29663,
+    "answer": "B"
+   },
+   "overlapping_pairs": {
+    "a": 31107,
+    "b": 29672
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 32614,
+    "n_peaks_b": 15004,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 21061,
+    "n_b_peaks_overlapping_reference": 12696,
+    "n_reference_peaks_overlapped_by_a": 29741,
+    "n_reference_peaks_overlapped_by_b": 29666
+   }
+  },
+  {
+   "instance": "pair_03",
+   "library": "ab4729-1",
+   "antibody": "Abcam ab4729",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728357",
+   "round": "benchmarking library",
+   "labels": {
+    "A": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728357_ab4729-1_rmDup_q1e-5_macs2_peaks.bed.gz",
+     "sha256_staged": "2229401b257625be1ed15cdb6f2e98d77980e177a696ed676434eb43e29bf1c3"
+    },
+    "B": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728357_ab4729-1_rmDup_individual_seacr_top0.01_peaks.stringent.bed.gz",
+     "sha256_staged": "df85876dd36869c85e7bcac120a0c6ee2635529c22b2dd5419e00c8ea7a391e7"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 21499,
+     "overlapping_blacklist": 1104,
+     "outside_chr1_22_X_Y": 182,
+     "rows_staged": 20213
+    },
+    "SEACR": {
+     "rows_in_source": 14557,
+     "overlapping_blacklist": 666,
+     "outside_chr1_22_X_Y": 100,
+     "rows_staged": 13791
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 20213,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 331,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 13791,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 217,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 665.0,
+    "B": 2840.0
+   },
+   "key": {
+    "n_peaks_a": 20213,
+    "n_peaks_b": 13791,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 16191,
+    "n_b_peaks_overlapping_reference": 11948,
+    "n_reference_peaks_overlapped_by_a": 20017,
+    "n_reference_peaks_overlapped_by_b": 25208,
+    "answer": "B"
+   },
+   "overlapping_pairs": {
+    "a": 21626,
+    "b": 25254
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 20213,
+    "n_peaks_b": 13791,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 16193,
+    "n_b_peaks_overlapping_reference": 11949,
+    "n_reference_peaks_overlapped_by_a": 20027,
+    "n_reference_peaks_overlapped_by_b": 25215
+   }
+  },
+  {
+   "instance": "pair_04",
+   "library": "ab4729-2",
+   "antibody": "Abcam ab4729",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728358",
+   "round": "benchmarking library",
+   "labels": {
+    "A": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728358_ab4729-2_rmDup_q1e-5_macs2_peaks.bed.gz",
+     "sha256_staged": "ed65ae1421acb89003c1a317edf71b8474a4290190128f792c0bcd863bc25d21"
+    },
+    "B": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728358_ab4729-2_rmDup_individual_seacr_top0.01_peaks.stringent.bed.gz",
+     "sha256_staged": "88d2f1332e0309e51bedef2d291fee80db5cad4177972b39657926374271f083"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 29154,
+     "overlapping_blacklist": 1138,
+     "outside_chr1_22_X_Y": 135,
+     "rows_staged": 27881
+    },
+    "SEACR": {
+     "rows_in_source": 10970,
+     "overlapping_blacklist": 397,
+     "outside_chr1_22_X_Y": 40,
+     "rows_staged": 10533
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 27881,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 417,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 10533,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 155,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 810.0,
+    "B": 3872.0
+   },
+   "key": {
+    "n_peaks_a": 27881,
+    "n_peaks_b": 10533,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 20769,
+    "n_b_peaks_overlapping_reference": 10011,
+    "n_reference_peaks_overlapped_by_a": 28899,
+    "n_reference_peaks_overlapped_by_b": 24351,
+    "answer": "B"
+   },
+   "overlapping_pairs": {
+    "a": 30203,
+    "b": 24355
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 27881,
+    "n_peaks_b": 10533,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 20771,
+    "n_b_peaks_overlapping_reference": 10011,
+    "n_reference_peaks_overlapped_by_a": 28912,
+    "n_reference_peaks_overlapped_by_b": 24354
+   }
+  },
+  {
+   "instance": "pair_05",
+   "library": "diag-1",
+   "antibody": "Diagenode C15410196",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728359",
+   "round": "benchmarking library",
+   "labels": {
+    "A": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728359_diag-1_rmDup_q1e-5_macs2_peaks.bed.gz",
+     "sha256_staged": "20041fa2ab71dd37578bb990c22bfa6f256e13187187175e6d80ec0bc06ae7b9"
+    },
+    "B": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728359_diag-1_rmDup_individual_seacr_top0.01_peaks.stringent.bed.gz",
+     "sha256_staged": "e6ba1d5a50320cd2353b872c6c51833f7131f29d023215458dcfb1e228d2304b"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 22067,
+     "overlapping_blacklist": 1004,
+     "outside_chr1_22_X_Y": 159,
+     "rows_staged": 20904
+    },
+    "SEACR": {
+     "rows_in_source": 11736,
+     "overlapping_blacklist": 455,
+     "outside_chr1_22_X_Y": 62,
+     "rows_staged": 11219
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 20904,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 297,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 11219,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 164,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 965.0,
+    "B": 3480.0
+   },
+   "key": {
+    "n_peaks_a": 20904,
+    "n_peaks_b": 11219,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 17749,
+    "n_b_peaks_overlapping_reference": 10753,
+    "n_reference_peaks_overlapped_by_a": 25669,
+    "n_reference_peaks_overlapped_by_b": 25315,
+    "answer": "A"
+   },
+   "overlapping_pairs": {
+    "a": 26535,
+    "b": 25320
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 20904,
+    "n_peaks_b": 11219,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 17753,
+    "n_b_peaks_overlapping_reference": 10753,
+    "n_reference_peaks_overlapped_by_a": 25682,
+    "n_reference_peaks_overlapped_by_b": 25316
+   }
+  },
+  {
+   "instance": "pair_06",
+   "library": "diag-2",
+   "antibody": "Diagenode C15410196",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728360",
+   "round": "benchmarking library",
+   "labels": {
+    "A": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728360_diag-2_rmDup_individual_seacr_top0.01_peaks.stringent.bed.gz",
+     "sha256_staged": "0d6e7edf341e6b96ec0238b02cebc696d5739fd54171db7c977acca844e7b670"
+    },
+    "B": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728360_diag-2_rmDup_q1e-5_macs2_peaks.bed.gz",
+     "sha256_staged": "5c5305ee72f0be0cfef2da130a3ec9fa2b755bf4607d0da2bad87a28867a8785"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 27000,
+     "overlapping_blacklist": 1199,
+     "outside_chr1_22_X_Y": 167,
+     "rows_staged": 25634
+    },
+    "SEACR": {
+     "rows_in_source": 12601,
+     "overlapping_blacklist": 494,
+     "outside_chr1_22_X_Y": 14,
+     "rows_staged": 12093
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 12093,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 171,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 25634,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 343,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 3968.0,
+    "B": 993.0
+   },
+   "key": {
+    "n_peaks_a": 12093,
+    "n_peaks_b": 25634,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 11424,
+    "n_b_peaks_overlapping_reference": 19955,
+    "n_reference_peaks_overlapped_by_a": 28436,
+    "n_reference_peaks_overlapped_by_b": 30479,
+    "answer": "B"
+   },
+   "overlapping_pairs": {
+    "a": 28437,
+    "b": 31218
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 12093,
+    "n_peaks_b": 25634,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 11424,
+    "n_b_peaks_overlapping_reference": 19955,
+    "n_reference_peaks_overlapped_by_a": 28436,
+    "n_reference_peaks_overlapped_by_b": 30489
+   }
+  },
+  {
+   "instance": "pair_07",
+   "library": "Abcam-ab177178_1_100",
+   "antibody": "Abcam ab177178, 1:100",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728363",
+   "round": "first-round library",
+   "labels": {
+    "A": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728363_Abcam-ab177178_1_100_MACS2.rmDup.bed.gz",
+     "sha256_staged": "473ca7fc0f3c8dccaed5422474c1da0cb0ef43c3d9c9cac971ae5286dee29b18"
+    },
+    "B": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728363_Abcam-ab177178_1_100_SEACR.rmDup.bed.gz",
+     "sha256_staged": "ae8770a4dddd9980144b3876a7843f24103933da0b811f3747c8dc709208958b"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 11175,
+     "overlapping_blacklist": 1199,
+     "outside_chr1_22_X_Y": 288,
+     "rows_staged": 9688
+    },
+    "SEACR": {
+     "rows_in_source": 16908,
+     "overlapping_blacklist": 1203,
+     "outside_chr1_22_X_Y": 247,
+     "rows_staged": 15458
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 9688,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 141,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 15458,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 200,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 342.0,
+    "B": 1395.5
+   },
+   "key": {
+    "n_peaks_a": 9688,
+    "n_peaks_b": 15458,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 6773,
+    "n_b_peaks_overlapping_reference": 9548,
+    "n_reference_peaks_overlapped_by_a": 6310,
+    "n_reference_peaks_overlapped_by_b": 12848,
+    "answer": "neither"
+   },
+   "overlapping_pairs": {
+    "a": 7276,
+    "b": 13342
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 9688,
+    "n_peaks_b": 15458,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 6775,
+    "n_b_peaks_overlapping_reference": 9548,
+    "n_reference_peaks_overlapped_by_a": 6315,
+    "n_reference_peaks_overlapped_by_b": 12854
+   }
+  },
+  {
+   "instance": "pair_08",
+   "library": "Abcam-ab4729_1_100",
+   "antibody": "Abcam ab4729, 1:100",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728364",
+   "round": "first-round library",
+   "labels": {
+    "A": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728364_Abcam-ab4729_1_100_SEACR.rmDup.bed.gz",
+     "sha256_staged": "b87961988bace4b26e35bc667e1dff4ce93f2701176354ff62886c0ba24c04bb"
+    },
+    "B": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728364_Abcam-ab4729_1_100_MACS2.rmDup.bed.gz",
+     "sha256_staged": "e3f155002547e84203bc184b5bec5b0b6fef63cbeefeaa7032a4b4222fac56f0"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 26077,
+     "overlapping_blacklist": 1773,
+     "outside_chr1_22_X_Y": 228,
+     "rows_staged": 24076
+    },
+    "SEACR": {
+     "rows_in_source": 13530,
+     "overlapping_blacklist": 770,
+     "outside_chr1_22_X_Y": 103,
+     "rows_staged": 12657
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 12657,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 183,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 24076,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 370,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 2737.0,
+    "B": 645.0
+   },
+   "key": {
+    "n_peaks_a": 12657,
+    "n_peaks_b": 24076,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 11356,
+    "n_b_peaks_overlapping_reference": 18960,
+    "n_reference_peaks_overlapped_by_a": 23473,
+    "n_reference_peaks_overlapped_by_b": 22517,
+    "answer": "A"
+   },
+   "overlapping_pairs": {
+    "a": 23505,
+    "b": 24831
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 12657,
+    "n_peaks_b": 24076,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 11356,
+    "n_b_peaks_overlapping_reference": 18962,
+    "n_reference_peaks_overlapped_by_a": 23481,
+    "n_reference_peaks_overlapped_by_b": 22523
+   }
+  },
+  {
+   "instance": "pair_09",
+   "library": "Active_Motif_39133_1_100",
+   "antibody": "Active Motif 39133, 1:100",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728365",
+   "round": "first-round library",
+   "labels": {
+    "A": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728365_Active_Motif_39133_1_100_SEACR.rmDup.bed.gz",
+     "sha256_staged": "5f67d106b1b51646c1d767a82eca3d22d4c2e7c15d3229c10c91d6508927ea21"
+    },
+    "B": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728365_Active_Motif_39133_1_100_MACS2.rmDup.bed.gz",
+     "sha256_staged": "56d072f99026531b2d0cd32f1d7c87dffc1bd81285e5e30269383e86de6bcd7b"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 2526,
+     "overlapping_blacklist": 586,
+     "outside_chr1_22_X_Y": 178,
+     "rows_staged": 1762
+    },
+    "SEACR": {
+     "rows_in_source": 3211,
+     "overlapping_blacklist": 573,
+     "outside_chr1_22_X_Y": 141,
+     "rows_staged": 2497
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 2497,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 61,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 1762,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 44,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 893.0,
+    "B": 286.0
+   },
+   "key": {
+    "n_peaks_a": 2497,
+    "n_peaks_b": 1762,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 1927,
+    "n_b_peaks_overlapping_reference": 1113,
+    "n_reference_peaks_overlapped_by_a": 2356,
+    "n_reference_peaks_overlapped_by_b": 1135,
+    "answer": "A"
+   },
+   "overlapping_pairs": {
+    "a": 2426,
+    "b": 1191
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 2497,
+    "n_peaks_b": 1762,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 1927,
+    "n_b_peaks_overlapping_reference": 1113,
+    "n_reference_peaks_overlapped_by_a": 2361,
+    "n_reference_peaks_overlapped_by_b": 1136
+   }
+  },
+  {
+   "instance": "pair_10",
+   "library": "Diagenode_C15410196_1_100",
+   "antibody": "Diagenode C15410196, 1:100",
+   "geo_series": "GSE286492",
+   "geo_sample": "GSM8728367",
+   "round": "first-round library",
+   "labels": {
+    "A": {
+     "peak_caller": "MACS2",
+     "settings": "MACS2 callpeak -f BAMPE -g hs -q 1e-5 --keep-dup all --nolambda --nomodel, run on the duplicate-removed alignments",
+     "source_file": "GSM8728367_Diagenode_C15410196_1_100_MACS2.rmDup.bed.gz",
+     "sha256_staged": "47c2ec3be66ca21ea5ceabca4a169d112f20f71ad634492b4a8763240143c027"
+    },
+    "B": {
+     "peak_caller": "SEACR",
+     "settings": "SEACR 1.3, threshold 0.01 (top 1%), no normalisation, stringent, run on the duplicate-removed fragment bedgraph",
+     "source_file": "GSM8728367_Diagenode_C15410196_1_100_SEACR.rmDup.bed.gz",
+     "sha256_staged": "130708746b4bd9215243155c296f5b3cd336229c691c649fe5bbf3810fb88b42"
+    }
+   },
+   "filter": {
+    "MACS2": {
+     "rows_in_source": 7933,
+     "overlapping_blacklist": 960,
+     "outside_chr1_22_X_Y": 256,
+     "rows_staged": 6717
+    },
+    "SEACR": {
+     "rows_in_source": 8040,
+     "overlapping_blacklist": 817,
+     "outside_chr1_22_X_Y": 158,
+     "rows_staged": 7065
+    }
+   },
+   "hygiene": {
+    "A": {
+     "rows": 6717,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 113,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    },
+    "B": {
+     "rows": 7065,
+     "duplicate_rows": 0,
+     "zero_length": 0,
+     "peaks_overlapping_another_peak_in_the_same_file": 0,
+     "ending_beyond_hg19_chromosome_end": 0,
+     "ending_beyond_hg38_chromosome_end": 119,
+     "outside_chr1_22_X_Y": 0,
+     "overlapping_blacklist_after_filter": 0
+    }
+   },
+   "median_width": {
+    "A": 371.0,
+    "B": 1344.0
+   },
+   "key": {
+    "n_peaks_a": 6717,
+    "n_peaks_b": 7065,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 5974,
+    "n_b_peaks_overlapping_reference": 6553,
+    "n_reference_peaks_overlapped_by_a": 5924,
+    "n_reference_peaks_overlapped_by_b": 9280,
+    "answer": "B"
+   },
+   "overlapping_pairs": {
+    "a": 6749,
+    "b": 9549
+   },
+   "counts_if_touching_intervals_counted": {
+    "n_peaks_a": 6717,
+    "n_peaks_b": 7065,
+    "n_reference_peaks": 51176,
+    "n_a_peaks_overlapping_reference": 5974,
+    "n_b_peaks_overlapping_reference": 6553,
+    "n_reference_peaks_overlapped_by_a": 5928,
+    "n_reference_peaks_overlapped_by_b": 9285
+   }
+  }
+ ]
+}

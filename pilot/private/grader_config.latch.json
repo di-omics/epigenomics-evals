@@ -1,0 +1,57 @@
+{
+ "type": "all_of",
+ "config": {
+  "children": [
+   {
+    "type": "numeric_tolerance",
+    "config": {
+     "ground_truth": {
+      "n_peaks_a": 11094,
+      "n_peaks_b": 19672,
+      "n_reference_peaks": 51176,
+      "n_a_peaks_overlapping_reference": 10243,
+      "n_b_peaks_overlapping_reference": 16540,
+      "n_reference_peaks_overlapped_by_a": 19190,
+      "n_reference_peaks_overlapped_by_b": 17365
+     },
+     "tolerances": {
+      "n_peaks_a": {
+       "type": "absolute",
+       "value": 0
+      },
+      "n_peaks_b": {
+       "type": "absolute",
+       "value": 0
+      },
+      "n_reference_peaks": {
+       "type": "absolute",
+       "value": 0
+      },
+      "n_a_peaks_overlapping_reference": {
+       "type": "absolute",
+       "value": 0
+      },
+      "n_b_peaks_overlapping_reference": {
+       "type": "absolute",
+       "value": 0
+      },
+      "n_reference_peaks_overlapped_by_a": {
+       "type": "absolute",
+       "value": 0
+      },
+      "n_reference_peaks_overlapped_by_b": {
+       "type": "absolute",
+       "value": 0
+      }
+     }
+    }
+   },
+   {
+    "type": "multiple_choice",
+    "config": {
+     "correct_answer": "A"
+    }
+   }
+  ]
+ }
+}

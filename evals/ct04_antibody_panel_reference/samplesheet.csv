@@ -1,0 +1,21 @@
+library,geo_sample,antibody,target,dilution,pcr_cycles,dna_extraction,peak_caller,downsampled_to_common_depth,peak_file
+Abcam-ab177178_1in100_11cyc_SDS,GSM8728373,Abcam-ab177178,H3K27ac,1:100,11,SDS,SEACR stringent,yes,GSM8728373_Abcam-ab177178_1_100_11PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+Abcam-ab4729_1in100_11cyc_SDS,GSM8728374,Abcam-ab4729,H3K27ac,1:100,11,SDS,SEACR stringent,yes,GSM8728374_Abcam-ab4729_1_100_11PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+Active_Motif_39133_1in100_11cyc_SDS,GSM8728375,Active Motif 39133,H3K27ac,1:100,11,SDS,SEACR stringent,yes,GSM8728375_Active_Motif_39133_1_100_11PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+CST9733_1in100_11cyc_SDS,GSM8728376,CST9733,H3K27me3,1:100,11,SDS,SEACR stringent,yes,GSM8728376_CST9733_1_100_11PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+Diagenode_C15410196_1in50_11cyc_SDS,GSM8728377,Diagenode C15410196,H3K27ac,1:50,11,SDS,SEACR stringent,yes,GSM8728377_Diagenode_C15410196_1_50_11PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+Abcam-ab177178_1in100_11cyc_column,GSM8728378,Abcam-ab177178,H3K27ac,1:100,11,column,SEACR stringent,yes,GSM8728378_Abcam-ab177178_1_100_11PCR_column_downsampled_SEACR.rmDup.bed.gz
+Abcam-ab4729_1in100_11cyc_column,GSM8728379,Abcam-ab4729,H3K27ac,1:100,11,column,SEACR stringent,yes,GSM8728379_Abcam-ab4729_1_100_11PCR_column_downsampled_SEACR.rmDup.bed.gz
+Active_Motif_39133_1in100_11cyc_column,GSM8728380,Active Motif 39133,H3K27ac,1:100,11,column,SEACR stringent,yes,GSM8728380_Active_Motif_39133_1_100_11PCR_column_downsampled_SEACR.rmDup.bed.gz
+CST9733_1in100_11cyc_column,GSM8728381,CST9733,H3K27me3,1:100,11,column,SEACR stringent,yes,GSM8728381_CST9733_1_100_11PCR_column_downsampled_SEACR.rmDup.bed.gz
+Diagenode_C15410196_1in50_11cyc_column,GSM8728382,Diagenode C15410196,H3K27ac,1:50,11,column,SEACR stringent,yes,GSM8728382_Diagenode_C15410196_1_50_11PCR_column_downsampled_SEACR.rmDup.bed.gz
+Abcam-ab177178_1in100_13cyc_SDS,GSM8728383,Abcam-ab177178,H3K27ac,1:100,13,SDS,SEACR stringent,yes,GSM8728383_Abcam-ab177178_1_100_13PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+Abcam-ab4729_1in100_13cyc_SDS,GSM8728384,Abcam-ab4729,H3K27ac,1:100,13,SDS,SEACR stringent,yes,GSM8728384_Abcam-ab4729_1_100_13PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+Active_Motif_39133_1in100_13cyc_SDS,GSM8728385,Active Motif 39133,H3K27ac,1:100,13,SDS,SEACR stringent,yes,GSM8728385_Active_Motif_39133_1_100_13PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+CST9733_1in100_13cyc_SDS,GSM8728386,CST9733,H3K27me3,1:100,13,SDS,SEACR stringent,yes,GSM8728386_CST9733_1_100_13PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+Diagenode_C15410196_1in50_13cyc_SDS,GSM8728387,Diagenode C15410196,H3K27ac,1:50,13,SDS,SEACR stringent,yes,GSM8728387_Diagenode_C15410196_1_50_13PCR_SDS_downsampled_SEACR.rmDup.bed.gz
+Abcam-ab177178_1in100_13cyc_column,GSM8728388,Abcam-ab177178,H3K27ac,1:100,13,column,SEACR stringent,yes,GSM8728388_Abcam-ab177178_1_100_13PCR_column_downsampled_SEACR.rmDup.bed.gz
+Abcam-ab4729_1in100_13cyc_column,GSM8728389,Abcam-ab4729,H3K27ac,1:100,13,column,SEACR stringent,yes,GSM8728389_Abcam-ab4729_1_100_13PCR_column_downsampled_SEACR.rmDup.bed.gz
+Active_Motif_39133_1in100_13cyc_column,GSM8728390,Active Motif 39133,H3K27ac,1:100,13,column,SEACR stringent,yes,GSM8728390_Active_Motif_39133_1_100_13PCR_column_downsampled_SEACR.rmDup.bed.gz
+CST9733_1in100_13cyc_column,GSM8728391,CST9733,H3K27me3,1:100,13,column,SEACR stringent,yes,GSM8728391_CST9733_1_100_13PCR_column_downsampled_SEACR.rmDup.bed.gz
+Diagenode_C15410196_1in50_13cyc_column,GSM8728392,Diagenode C15410196,H3K27ac,1:50,13,column,SEACR stringent,yes,GSM8728392_Diagenode_C15410196_1_50_13PCR_column_downsampled_SEACR.rmDup.bed.gz

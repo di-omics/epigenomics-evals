@@ -1,0 +1,13 @@
+{
+ "instance": "pair_07",
+ "key": {
+  "n_peaks_a": 9688,
+  "n_peaks_b": 15458,
+  "n_reference_peaks": 51176,
+  "n_a_peaks_overlapping_reference": 6773,
+  "n_b_peaks_overlapping_reference": 9548,
+  "n_reference_peaks_overlapped_by_a": 6310,
+  "n_reference_peaks_overlapped_by_b": 12848,
+  "answer": "neither"
+ }
+}
